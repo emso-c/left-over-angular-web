@@ -2,7 +2,11 @@
   <div class="fullscreen-loading"></div>
 </div>
 
-<div *ngIf="!fetchingData">
+<a routerLink="/main" class="btn btn-primary btn-lg rounded-circle">
+  <i class="fa fa-arrow-left"></i>
+</a>
+
+<div class="pt-5" *ngIf="!fetchingData">
   <ul *ngFor="let food of userFoods">
     <li>
       <div>
