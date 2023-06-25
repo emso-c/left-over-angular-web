@@ -15,6 +15,13 @@ import { FormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ImagePickerComponent } from './image-picker/image-picker.component';
+import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
+import { MainCustomerComponent } from './main-customer/main-customer.component';
+import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
+import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
+import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-comments.component';
+import { RestaurantAddDishComponent } from './restaurant-add-dish/restaurant-add-dish.component';
+import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +31,13 @@ import { ImagePickerComponent } from './image-picker/image-picker.component';
     MainComponent,
     ProfileDetailsComponent,
     ImagePickerComponent,
+    MainRestaurantComponent,
+    MainCustomerComponent,
+    RestaurantEditComponent,
+    RestaurantMenuComponent,
+    RestaurantCommentsComponent,
+    RestaurantAddDishComponent,
+    RestaurantEditDishComponent,
   ],
   imports: [
     BrowserModule,

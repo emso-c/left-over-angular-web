@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { CustomerDetails, Food, RestaurantDetails, User } from '../shared/models';
 import { setDoc, doc, Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { Storage, deleteObject, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Auth } from '@angular/fire/auth';
 
 @Injectable({
@@ -53,13 +53,24 @@ export class UserService {
     return uuid;
   }
 
-  uploadProfileImage(uid: string, file: File) {
+  uploadImage(uid: string, file: File) {
     const newFileName =  this.generateUUID();
     file = new File([file], newFileName, { type: file.type });
     const storageRef = ref(this.storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file)
-    console.log('uploading image', file.name)
     return uploadTask;
+  }
+
+  removeImage(fileName: string) {
+    const storageRef = ref(this.storage, fileName);
+    return deleteObject(storageRef)
+  }
+
+  deleteFood(foodId: string) {
+    const foodIndex = this.currentUser!.details!.foods.findIndex((food: { _id: string; }) => food._id === foodId);
+    this.currentUser!.details!.foods.splice(foodIndex, 1);
+    const userRef = doc(this.firestore, 'users', this.currentUser!.details!._id);
+    return setDoc(userRef, this.currentUser!.details!, { merge: true });
   }
 
   updateCurrentUserDetails(details: CustomerDetails | RestaurantDetails) {

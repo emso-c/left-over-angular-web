@@ -1,0 +1,27 @@
+<div *ngIf="isSubmitting">
+  <div class="fullscreen-loading"></div>
+</div>
+
+<h2>Restaurant Edit</h2>
+<form (ngSubmit)="submitAddDishForm()" #form="ngForm">
+  <div class="form-group">
+    <app-image-picker [imageUrl]="foodPlaceholder" (newImgEvent)="handleAddDishImageChange($event)"></app-image-picker>
+  </div>
+  <div class="form-group">
+    <label for="name">Restaurant Title</label>
+    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="addDishFormData.title" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Restaurant Description</label>
+    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="addDishFormData.description" required>
+  </div>
+  <div class="form-group">
+    <label for="main_price">Restaurant Main Price</label>
+    <input type="text" class="form-control" id="main_price" name="main_price" [(ngModel)]="addDishFormData.main_price" required>
+  </div>
+  <div class="form-group">
+    <label for="sales_price">Restaurant Sales Price</label>
+    <input type="text" class="form-control" id="sales_price" name="sales_price" [(ngModel)]="addDishFormData.sales_price" required>
+  </div>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>

@@ -33,7 +33,7 @@
 
 <div *ngIf="currentPage === 'restaurant'">
   <h2>Restaurant Tab</h2>
-  <form (ngSubmit)="submitRestaurantForm()" #form="ngForm">
+  <form ngSubmit="submitRestaurantForm()" #form="ngForm">
     <div class="form-group">
       <label>Profile Image</label>
       <app-image-picker (newImgEvent)="handleRestaurantImageChange($event)"></app-image-picker>

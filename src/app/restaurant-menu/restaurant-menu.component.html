@@ -1,0 +1,25 @@
+<div *ngIf="fetchingData">
+  <div class="fullscreen-loading"></div>
+</div>
+
+<div *ngIf="!fetchingData">
+  <ul *ngFor="let food of userFoods">
+    <li>
+      <div>
+        <img src="{{food.img}}" alt="food image" width="200px" height="200px">
+        <h3>{{food.title}}</h3>
+        <p>{{food.description}}</p>
+        <p class="text-decoration-line-through">{{food.main_price}}</p>
+        <p>{{food.sales_price}}</p>
+        <a class="btn btn-primary" href="restaurant-edit-dish/{{food._id}}">
+          <i class="fas fa-edit"></i>
+          Düzenle
+        </a>
+        <button class="btn btn-danger" (click)="deleteFood(food._id)">
+          <i class="fas fa-trash"></i>
+          Sil
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

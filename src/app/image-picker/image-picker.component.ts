@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-image-picker',
@@ -21,13 +21,20 @@ import { Component, Renderer2, ViewChild, ElementRef, Output, EventEmitter } fro
   `,
   styleUrls: ['./image-picker.component.css']
 })
-export class ImagePickerComponent {
+export class ImagePickerComponent implements OnChanges {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  @Input() imageUrl: string | undefined | null;
 
   placeholderImage = 'https://www.drupal.org/files/issues/default-avatar.png';
   selectedImage: string | undefined;
 
   constructor(private renderer: Renderer2) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['imageUrl'] && this.imageUrl) {
+      this.selectedImage = this.imageUrl;
+    }
+  }
 
   openFilePicker() {
     this.renderer.selectRootElement(this.fileInput.nativeElement).click();

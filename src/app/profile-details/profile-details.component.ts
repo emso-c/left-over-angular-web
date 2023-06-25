@@ -47,7 +47,7 @@ export class ProfileDetailsComponent {
       return;
     }
 
-    this.userService.uploadProfileImage(id!, this.imgFile!)
+    this.userService.uploadImage(id!, this.imgFile!)
       .then((snapshot) => {
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             const data: CustomerDetails = {
@@ -111,7 +111,7 @@ export class ProfileDetailsComponent {
       return;
     }
 
-    this.userService.uploadProfileImage(id!, this.imgFile!)
+    this.userService.uploadImage(id!, this.imgFile!)
       .then((snapshot) => {
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             const data: RestaurantDetails = {

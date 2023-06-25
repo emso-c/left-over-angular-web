@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Food } from '../shared/models';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { setDoc, deleteDoc, doc, Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,24 @@ export class FoodService {
       this.setFoods(allFoods);
       this.loaded = true;
     });
+  }
+
+  addFood(food: Food) {
+    this.foods.push(food);
+    return setDoc(doc(this.firestore, 'foods', food._id), food);
+  }
+
+  deleteFood(foodId: string) {
+    const foodIndex = this.foods.findIndex(food => food._id === foodId);
+    this.foods.splice(foodIndex, 1);
+    return deleteDoc(doc(this.firestore, 'foods', foodId));
+  }
+
+  updateFood(uid: string, newFood: Food) {
+    // update from firestore
+    const foodIndex = this.foods.findIndex(food => food._id === uid);
+    this.foods[foodIndex] = newFood;
+    return setDoc(doc(this.firestore, 'foods', newFood._id), newFood);
   }
 
   setFoods(foods: Food[]) {

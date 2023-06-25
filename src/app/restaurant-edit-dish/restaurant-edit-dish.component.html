@@ -1,0 +1,28 @@
+<div *ngIf="isSubmitting || fetchingData">
+  <div class="fullscreen-loading"></div>
+</div>
+
+<h2>Yemeği Düzenle</h2>
+<form (ngSubmit)="submitDishForm()" #form="ngForm">
+  <div class="form-group">
+    <label>Dish Image</label>
+    <app-image-picker [imageUrl]="dishFormData.img" (newImgEvent)="handleDishImageChange($event)"></app-image-picker>
+  </div>
+  <div class="form-group">
+    <label for="name">Dish Title</label>
+    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="dishFormData.title" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Dish Description</label>
+    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="dishFormData.description" required>
+  </div>
+  <div class="form-group">
+    <label for="main_price">Dish Main Price</label>
+    <input type="text" class="form-control" id="main_price" name="main_price" [(ngModel)]="dishFormData.main_price" required>
+  </div>
+  <div class="form-group">
+    <label for="sales_price">Dish Sales Price</label>
+    <input type="text" class="form-control" id="sales_price" name="sales_price" [(ngModel)]="dishFormData.sales_price" required>
+  </div>
+  <button type="submit" [disabled]="!form.valid">Düzenle</button>
+</form>
