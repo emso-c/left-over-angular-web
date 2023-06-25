@@ -1,0 +1,23 @@
+<div *ngIf="!userService.loaded || !foodService.loaded">
+  <div class="fullscreen-loading"></div>
+</div>
+
+<div *ngIf="userService.loaded && foodService.loaded">
+  <h1>All users:</h1>
+  <ul *ngFor="let user of userService.users">
+    <li>{{user.email}}</li>
+  </ul>
+  <p *ngIf="!userService.loaded">Loading Users...</p>
+
+  <h1>Current user:</h1>
+  <p>{{userService.currentUser?.email}}</p>
+  <p *ngIf="userService.currentUser === null">Loading Current User...</p>
+  
+  <h1>Dishes:</h1>
+  <ul *ngFor="let food of foodService.foods">
+    <li>{{food.title}}</li>
+  </ul>
+  <p *ngIf="!foodService.loaded">Loading Foods...</p>
+
+  <button (click)="logout()">logout</button>
+</div>

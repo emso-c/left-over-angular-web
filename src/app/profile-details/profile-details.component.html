@@ -1,0 +1,51 @@
+<nav class="nav nav-pills nav-fill">
+  <a class="nav-link" [class.active]="currentPage === 'customer'" (click)="changePage('customer')">Customer</a>
+  <a class="nav-link" [class.active]="currentPage === 'restaurant'" (click)="changePage('restaurant')">Restaurant</a>
+</nav>
+
+<div *ngIf="isSubmitting">
+  <div class="fullscreen-loading"></div>
+</div>
+
+<div *ngIf="currentPage === 'customer'">
+  <h2>Client Tab</h2>
+  <form (ngSubmit)="submitCustomerForm()" #form="ngForm">
+    <div class="form-group">
+      <label>Profile Image</label>
+      <app-image-picker (newImgEvent)="handleCustomerImageChange($event)"></app-image-picker>
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="customerFormData.name" required>
+    </div> 
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" id="surname" name="surname" [(ngModel)]="customerFormData.surname" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <input type="radio" class="form-check-input" id="gender" name="gender" value="Man" [(ngModel)]="customerFormData.gender" required>Man
+      <input type="radio" class="form-check-input" id="gender" name="gender" value="Woman" [(ngModel)]="customerFormData.gender" required>Woman
+    </div>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
+
+<div *ngIf="currentPage === 'restaurant'">
+  <h2>Restaurant Tab</h2>
+  <form (ngSubmit)="submitRestaurantForm()" #form="ngForm">
+    <div class="form-group">
+      <label>Profile Image</label>
+      <app-image-picker (newImgEvent)="handleRestaurantImageChange($event)"></app-image-picker>
+    </div>
+    <div class="form-group">
+      <label for="name">Restaurant Title</label>
+      <input type="text" class="form-control" id="title" name="title" [(ngModel)]="restaurantFormData.title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Restaurant Description</label>
+      <input type="text" class="form-control" id="description" name="description" [(ngModel)]="restaurantFormData.description" required>
+    </div>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
