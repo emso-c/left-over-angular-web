@@ -16,7 +16,7 @@ export class FoodService {
     foodQuery.subscribe((foods) => {
       const allFoods = foods.map((food) => {
         const parsedFood: Food = {
-          id: food['_id'],
+          _id: food['_id'],
           description: food['description'],
           img: food['img'],
           main_price: food['main_price'],
@@ -35,6 +35,6 @@ export class FoodService {
   }
 
   getFoodById(id: string): Food | undefined {
-    return this.foods.find(food => food.id === id);
+    return this.foods.find(food => food._id === id);
   }
 }

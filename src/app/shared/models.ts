@@ -1,3 +1,12 @@
+interface Food {
+  _id: string;
+  title: string;
+  description: string;
+  main_price: number;
+  sales_price: number;
+  img: string | null;
+}
+
 interface CustomerDetails {
   _id: string;
   type: "customer";
@@ -22,20 +31,12 @@ interface RestaurantDetails {
   foods: string[] | null;
 }
 
-interface Food {
-  id: string;
-  title: string;
-  description: string;
-  main_price: number;
-  sales_price: number;
-  img: string | null;
-}
-
-
 interface User {
   uid: string;
   email: string;
-  details: CustomerDetails | RestaurantDetails | null;
+  // put any to solve the problem of the details property
+  // it's not supposed to be there
+  details: any | CustomerDetails | RestaurantDetails;
 }
 
 export type { CustomerDetails, RestaurantDetails, Food, User };

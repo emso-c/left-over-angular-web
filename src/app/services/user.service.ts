@@ -1,9 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { CustomerDetails, RestaurantDetails, User } from '../shared/models';
+import { CustomerDetails, Food, RestaurantDetails, User } from '../shared/models';
 import { setDoc, doc, Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Auth } from '@angular/fire/auth';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
