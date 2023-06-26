@@ -17,4 +17,23 @@ export class UtilsService {
       timeZoneName: 'short'  // Short timezone name (e.g., GMT+0300)
     }).replaceAll(',', '');
   }
+
+  getMonthNumber(month: string): string {
+    // example: from "Jun" to 6
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+                    'Nov', 'Dec'];
+    const monthNumber = months.indexOf(month) + 1;
+    return monthNumber < 10 ? `0${monthNumber}` : monthNumber.toString();
+  }
+  
+  formatDate(date: string): string {
+    // example: from "Sun Jun 13 2021 16:19:00 GMT+0300" to "13/05/2021 16:19:00 öö" (öö = öğleden önce = AM, ös = öğleden sonra = PM)
+    const dateParts = date.split(' ');
+    const day = dateParts[2];
+    const month = this.getMonthNumber(dateParts[1]);
+    const year = dateParts[3];
+    const time = dateParts[4];
+    const parsedDate = `${day}/${month}/${year} ${time}`;
+    return parsedDate;
+  }
 }

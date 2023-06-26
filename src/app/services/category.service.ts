@@ -16,7 +16,7 @@ export class CategoryService {
     categoryQuery.subscribe((categories) => {
       const allCategories = categories.map((category) => {
         const parsedCategory: Category = {
-          id: category['_id'],
+          _id: category['_id'],
           key: category['key'],
           label: category['label'],
           img: category['img'],

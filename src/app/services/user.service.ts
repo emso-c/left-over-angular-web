@@ -91,6 +91,10 @@ export class UserService {
     return this.users.find(user => user.uid === uid);
   }
 
+  getUserByID(id: string): User | undefined {
+    return this.users.find(user => user.details?._id === id);
+  }
+
   getUserByCompositeId(compositeId: string): User | undefined {
     return this.users.find(user => user.details?._id === compositeId);
   }

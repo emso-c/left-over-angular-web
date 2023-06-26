@@ -44,10 +44,21 @@ interface User {
 }
 
 interface Category {
-  id: string;
+  _id: string;
   key: string;
   img: string;
   label: string;
 }
 
-export type { CustomerDetails, RestaurantDetails, Food, User, Category };
+interface Comment {
+  _id: string;
+  createdAt: string;
+  description: string;
+  user: {
+    _id: string;
+    fullName: string;
+    img: string;
+  }
+}
+
+export type { CustomerDetails, RestaurantDetails, Food, User, Category, Comment };
