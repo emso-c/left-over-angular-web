@@ -80,6 +80,17 @@
 </div>
 
 <div *ngIf="userService.currentUser?.details?.type === 'restaurant'">
-  <app-main-restaurant></app-main-restaurant>
-  <button (click)="logout()">logout</button>
+  <div>
+    <div class="row-2">
+      <div class="d-flex justify-content-end">
+        
+        <button class="logout-btn" (click)="logout()">
+          <i class="fa-solid fa-power-off fa-xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row-10">
+      <app-main-restaurant></app-main-restaurant>
+    </div>
+  </div>
 </div>

@@ -72,7 +72,7 @@ export class RestaurantEditComponent {
   handleRestaurantImageChange(file: File) {
     this.imgFile = file;
   }
-  submitRestaurantForm() {
+  submitRestaurantEditForm() {
     this.isSubmitting = true;
     const id = this.userService.currentUser!.uid;
     const email = this.userService.currentUser!.email;

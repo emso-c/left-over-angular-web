@@ -60,6 +60,8 @@ export class ProfileDetailsComponent {
               type: 'customer',
               favoriteDishes: [],
               favoriteRestaurants: [],
+              //creditCards: [],
+              //orders: [],
               createdAt: this.utilsService.getCurrentDate()
             }
             this.userService.updateCurrentUserDetails(data)!

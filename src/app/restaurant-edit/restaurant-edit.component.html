@@ -8,7 +8,7 @@
 </a>
 
 <h2 class="pt-5">Restoran Bilgilerini Güncelle</h2>
-<form (ngSubmit)="submitRestaurantForm()" #form="ngForm">
+<form (ngSubmit)="submitRestaurantEditForm()" #form="ngForm">
   <div class="form-group">
     <label>Restoran Fotoğrafı</label>
     <app-image-picker [imageUrl]="restaurantFormData.img" (newImgEvent)="handleRestaurantImageChange($event)"></app-image-picker>
