@@ -61,4 +61,12 @@ interface Comment {
   }
 }
 
-export type { CustomerDetails, RestaurantDetails, Food, User, Category, Comment };
+interface Campaign {
+  _id: string;
+  category: string;
+  description: string;
+  img: string;
+  title: string;
+}
+
+export type { CustomerDetails, RestaurantDetails, Food, User, Category, Comment, Campaign };
