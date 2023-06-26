@@ -2,95 +2,15 @@
   <div class="fullscreen-loading"></div>
 </div>
 
-<!-- DEBUG SECTION
-  <div *ngIf="userService.loaded && foodService.loaded" class="d-none">
-    <h1>All users:</h1>
-  <ul *ngFor="let user of userService.users">
-    <li>{{user.email}}</li>
-  </ul>
-  <p *ngIf="!userService.loaded">Loading Users...</p>
-  
-  <h1>All Dishes:</h1>
-  <ul *ngFor="let food of foodService.foods">
-    <li>{{food.title}}</li>
-  </ul>
-  <p *ngIf="!foodService.loaded">Loading Foods...</p>
-  
-  <h1>Current user:</h1>
-  <div>
-    <img [src]="userService.currentUser?.details?.img" alt="profile image" width="100px" height="100px">
-    <div *ngIf="userService.currentUser?.details?.type === 'customer'">
-      <div>
-        <p>{{userService.currentUser?.details?.name}}</p>
-        <p>{{userService.currentUser?.details?.surname}}</p>
-        <p>{{userService.currentUser?.details?.gender}}</p>
-      </div>
-    </div>
-    <div *ngIf="userService.currentUser?.details?.type === 'restaurant'">
-      <p>{{userService.currentUser?.details?.title}}</p>
-      <p>{{userService.currentUser?.details?.description}}</p>
-      <ul *ngFor="let food of userService.currentUser?.details?.foods">
-        
-        <img [src]="foodService.getFoodById(food)?.img" alt="food image" width="100px" height="100px">
-        <li>{{ foodService.getFoodById(food)?.title }}</li>
-        <li>{{ foodService.getFoodById(food)?.description }}</li>
-        <li>
-          {{ foodService.getFoodById(food)?.main_price}}
-          =>
-          {{ foodService.getFoodById(food)?.sales_price }}
-        </li>
-      </ul>
-    </div>
+<div class="row-2">
+  <div class="d-flex justify-content-end">
+    
+    <button class="logout-btn" (click)="logout()">
+      <i class="fa-solid fa-power-off fa-xl"></i>
+    </button>
   </div>
-  <p *ngIf="userService.currentUser === null">Loading Current User...</p>
 </div>
--->
-
-
-
-<div *ngIf="userService.currentUser?.details?.type === 'customer'">
-  <h1>Current user:</h1>
-  <div>
-    <img [src]="userService.currentUser?.details?.img" alt="profile image" width="100px" height="100px">
-    <div *ngIf="userService.currentUser?.details?.type === 'customer'">
-      <div>
-        <p>{{userService.currentUser?.details?.name}}</p>
-        <p>{{userService.currentUser?.details?.surname}}</p>
-        <p>{{userService.currentUser?.details?.gender}}</p>
-      </div>
-    </div>
-    <div *ngIf="userService.currentUser?.details?.type === 'restaurant'">
-      <p>{{userService.currentUser?.details?.title}}</p>
-      <p>{{userService.currentUser?.details?.description}}</p>
-      <ul *ngFor="let food of userService.currentUser?.details?.foods">
-        
-        <img [src]="foodService.getFoodById(food)?.img" alt="food image" width="100px" height="100px">
-        <li>{{ foodService.getFoodById(food)?.title }}</li>
-        <li>{{ foodService.getFoodById(food)?.description }}</li>
-        <li>
-          {{ foodService.getFoodById(food)?.main_price}}
-          =>
-          {{ foodService.getFoodById(food)?.sales_price }}
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- <app-main-customer></app-main-customer> -->
-  <button (click)="logout()">logout</button>
-</div>
-
-<div *ngIf="userService.currentUser?.details?.type === 'restaurant'">
-  <div>
-    <div class="row-2">
-      <div class="d-flex justify-content-end">
-        
-        <button class="logout-btn" (click)="logout()">
-          <i class="fa-solid fa-power-off fa-xl"></i>
-        </button>
-      </div>
-    </div>
-    <div class="row-10">
-      <app-main-restaurant></app-main-restaurant>
-    </div>
-  </div>
+<div class="row-10">
+  <app-main-customer *ngIf="userService.currentUser?.details?.type === 'customer'"></app-main-customer>
+  <app-main-restaurant *ngIf="userService.currentUser?.details?.type === 'restaurant'"></app-main-restaurant>
 </div>
