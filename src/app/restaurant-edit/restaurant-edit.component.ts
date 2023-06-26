@@ -42,22 +42,6 @@ export class RestaurantEditComponent {
           description: details.description
         }
 
-        // fetch image and set imgFile
-        // FIXME: CORS error
-        fetch(details.img, {
-          method: 'GET',
-          headers: {
-            'Allow-Control-Allow-Origin': '*',
-          }
-        })
-          .then(res => res.blob())
-          .then(blob => {
-            const file = new File([blob], 'profile-image', {});
-            this.imgFile = file;
-          })
-          .catch(err => console.log(err));
-
-
         this.fetchingData = false;
         clearInterval(intervalId);
       }

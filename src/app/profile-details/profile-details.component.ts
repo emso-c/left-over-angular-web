@@ -38,6 +38,7 @@ export class ProfileDetailsComponent {
     const email = this.userService.currentUser!.email;
     const name = this.customerFormData.name;
     const surname = this.customerFormData.surname;
+    const gender = this.customerFormData.gender === "male" ? "male" : "female"
     this.customerFormData.id = id!;
     this.customerFormData.email = email!;
 
@@ -56,14 +57,15 @@ export class ProfileDetailsComponent {
               name: name,
               surname: surname,
               img: downloadURL,
-              gender: this.customerFormData.gender === "male" ? "male" : "female",
+              gender: gender,
               type: 'customer',
               favoriteDishes: [],
               favoriteRestaurants: [],
-              //creditCards: [],
-              //orders: [],
+              creditCards: [],
+              orders: [],
               createdAt: this.utilsService.getCurrentDate()
             }
+            console.log(data);
             this.userService.updateCurrentUserDetails(data)!
               .then(() => {
                   this.isSubmitting = false;

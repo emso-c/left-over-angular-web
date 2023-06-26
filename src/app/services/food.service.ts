@@ -21,7 +21,9 @@ export class FoodService {
           img: food['img'],
           main_price: food['main_price'],
           sales_price: food['sales_price'],
-          title: food['title']
+          title: food['title'],
+          category: food['category'],
+          createdBy: food['createdBy'],
         }
         return parsedFood;
       });
@@ -42,10 +44,9 @@ export class FoodService {
   }
 
   updateFood(uid: string, newFood: Food) {
-    // update from firestore
     const foodIndex = this.foods.findIndex(food => food._id === uid);
     this.foods[foodIndex] = newFood;
-    return setDoc(doc(this.firestore, 'foods', newFood._id), newFood);
+    return setDoc(doc(this.firestore, 'foods', newFood._id), newFood, { merge: true });
   }
 
   setFoods(foods: Food[]) {

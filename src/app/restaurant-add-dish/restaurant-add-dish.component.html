@@ -6,26 +6,37 @@
   <i class="fa fa-arrow-left"></i>
 </a>
 
-<h2 class="pt-5">Yeni Yemek Ekle</h2>
-<form (ngSubmit)="submitAddDishForm()" #form="ngForm">
-  <div class="form-group">
-    <app-image-picker [imageUrl]="foodPlaceholder" (newImgEvent)="handleAddDishImageChange($event)"></app-image-picker>
-  </div>
-  <div class="form-group">
-    <label for="name">Yemek Adı</label>
-    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="addDishFormData.title" required>
-  </div>
-  <div class="form-group">
-    <label for="description">Yemek Açıklaması</label>
-    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="addDishFormData.description" required>
-  </div>
-  <div class="form-group">
-    <label for="main_price">Ana Fiyat</label>
-    <input type="text" class="form-control" id="main_price" name="main_price" [(ngModel)]="addDishFormData.main_price" required>
-  </div>
-  <div class="form-group">
-    <label for="sales_price">İndirimli Fiyat</label>
-    <input type="text" class="form-control" id="sales_price" name="sales_price" [(ngModel)]="addDishFormData.sales_price" required>
-  </div>
-  <button type="submit" [disabled]="!form.valid">Submit</button>
-</form>
+<div class="container p-5">
+  <h2 class="pt-5">Yeni Yemek Ekle</h2>
+  <form (ngSubmit)="submitAddDishForm()" #form="ngForm">
+    <div class="form-group">
+      <app-image-picker [imageUrl]="foodPlaceholder" (newImgEvent)="handleAddDishImageChange($event)"></app-image-picker>
+    </div>
+    <div class="form-group">
+      <label for="name">Yemeğin Adı</label>
+      <input type="text" class="form-control" id="title" name="title" [(ngModel)]="addDishFormData.title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Açıklama</label>
+      <input type="text" class="form-control" id="description" name="description" [(ngModel)]="addDishFormData.description" required>
+    </div>
+    <div class="form-group">
+      <label for="main_price">Orijinal Fiyat</label>
+      <input type="text" class="form-control" id="main_price" name="main_price" [(ngModel)]="addDishFormData.main_price" required>
+    </div>
+    <div class="form-group">
+      <label for="sales_price">İndirimli Fiyat</label>
+      <input type="text" class="form-control" id="sales_price" name="sales_price" [(ngModel)]="addDishFormData.sales_price" required>
+    </div>
+    <div class="form-group">
+        <label for="sales_price">Kategori</label>
+        <select class="form-control" id="category" name="category" [(ngModel)]="addDishFormData.category" required [disabled]="!categoryService.categories.length">
+          <option *ngFor="let category of categoryService.categories" [value]="category.key">
+            <img src="{{ category.img }}" alt="category" width="50" height="50" class="m-1" />
+            {{ category.label }}
+          </option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>

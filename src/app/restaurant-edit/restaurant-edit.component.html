@@ -7,19 +7,19 @@
   <i class="fa fa-arrow-left"></i>
 </a>
 
-<h2 class="pt-5">Restoran Bilgilerini Güncelle</h2>
+<h2 class="pt-5">{{userService.currentUser?.details?.title}}</h2>
 <form (ngSubmit)="submitRestaurantEditForm()" #form="ngForm">
   <div class="form-group">
-    <label>Restoran Fotoğrafı</label>
+    <label>Yeni Restoran Fotoğrafı</label>
     <app-image-picker [imageUrl]="restaurantFormData.img" (newImgEvent)="handleRestaurantImageChange($event)"></app-image-picker>
   </div>
   <div class="form-group">
-    <label for="name">Restoran İsmi</label>
+    <label for="name">Yeni Restoran İsmi</label>
     <input type="text" class="form-control" id="title" name="title" [(ngModel)]="restaurantFormData.title" required>
   </div>
   <div class="form-group">
-    <label for="description">Restoran Açıklaması</label>
-    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="restaurantFormData.description" required>
+    <label for="description">Yeni Açıklama</label>
+    <textarea type="text" class="form-control" id="description" name="description" [(ngModel)]="restaurantFormData.description" required></textarea>
   </div>
   <button type="submit" [disabled]="!form.valid">Güncelle</button>
 </form>

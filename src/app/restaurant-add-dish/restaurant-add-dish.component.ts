@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { UtilsService } from '../services/utils.service';
 import { Food, RestaurantDetails } from '../shared/models';
 import { FoodService } from '../services/food.service';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-restaurant-add-dish',
@@ -15,6 +16,7 @@ export class RestaurantAddDishComponent {
   foodPlaceholder = 'https://nagrannar.is/images/food-placeholder.jpeg'
   userService: UserService = inject(UserService);
   foodService: FoodService = inject(FoodService);
+  categoryService: CategoryService = inject(CategoryService);
   private imgFile: File | undefined;
   private router: Router = inject(Router);
   private utilsService: UtilsService = inject(UtilsService);
@@ -26,6 +28,8 @@ export class RestaurantAddDishComponent {
     description: '',
     main_price: 0,
     sales_price: 0,
+    category: '',
+    createdBy: '',
   }
 
   handleAddDishImageChange(file: File) {
@@ -34,28 +38,29 @@ export class RestaurantAddDishComponent {
   submitAddDishForm() {
     this.isSubmitting = true;
     const id = this.userService.currentUser!.uid;
-    const email = this.userService.currentUser!.email;
     const details = this.userService.currentUser!.details!;
     
+    const createdBy = this.userService.currentUser!.details!._id;
     const title = this.addDishFormData.title;
     const description = this.addDishFormData.description;
     const main_price: number = parseInt(this.addDishFormData.main_price.toString());
     const sales_price: number = parseInt(this.addDishFormData.sales_price.toString());
+    const category = this.addDishFormData.category;
 
-    if (!title || !description || !main_price || !sales_price) {
-      alert('Please fill out all the fields');
+    if (!title || !description || !main_price || !sales_price || !category) {
+      alert('Lütfen bütün alanları doldurunuz');
       this.isSubmitting = false;
       return;
     }
 
-    if (sales_price > main_price) {
-      alert('Sales price cannot be higher than main price');
+    if (sales_price >= main_price) {
+      alert('İndirimli fiyat normal fiyattan yüksek olamaz');
       this.isSubmitting = false;
       return;
     }
 
     if (!this.imgFile) {
-      alert('Please select an image');
+      alert('Lütfen bir resim seçiniz');
       this.isSubmitting = false;
       return;
     }
@@ -70,14 +75,15 @@ export class RestaurantAddDishComponent {
             description: description,
             main_price: main_price,
             sales_price: sales_price,
+            category: category,
+            createdBy: createdBy,
           }
 
           details.foods = details.foods ?? [];
           details.foods.push(food._id);
-          console.log('details', details)
 
           const newDetails: RestaurantDetails = {
-            _id: email+'+'+id,
+            _id: details._id,
             title: details.title,
             description: details.description,
             img: details.img,
@@ -103,19 +109,5 @@ export class RestaurantAddDishComponent {
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => {
-        this.resetRestaurantForm();
-      });
-  }
-  resetRestaurantForm() {
-    // Reset the form data
-    this.addDishFormData = {
-      _id: '',
-      img: '',
-      title: '',
-      description: '',
-      main_price: 0,
-      sales_price: 0,
-    }
   }
 }

@@ -107,8 +107,11 @@ export class UserService {
         surname: userProfile['surname'],
         gender: userProfile['gender'],
         img: userProfile['img'],
-        favoriteDishes: userProfile['favoriteDishes'],
-        favoriteRestaurants: userProfile['favoriteRestaurants']
+        favoriteDishes: userProfile['favoriteDishes'] ?? [],
+        favoriteRestaurants: userProfile['favoriteRestaurants'] ?? [],
+        comments: userProfile['comments'] ?? [],
+        orders: userProfile['orders'] ?? [],
+        creditCards: userProfile['creditCards'] ?? [],
       }
     } else if (userProfile['type'] === 'restaurant') {
       profileDetails = {
@@ -117,9 +120,9 @@ export class UserService {
         createdAt: userProfile['createdAt'],
         description: userProfile['description'],
         title: userProfile['title'],
-        comments: userProfile['comments'],
         img: userProfile['img'],
-        foods: userProfile['foods']
+        comments: userProfile['comments'] ?? [],
+        foods: userProfile['foods'] ?? [],
       }
     } else {
       throw new Error('invalid user type');

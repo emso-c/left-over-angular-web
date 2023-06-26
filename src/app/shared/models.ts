@@ -5,6 +5,8 @@ interface Food {
   main_price: number;
   sales_price: number;
   img: string | null;
+  category: string;
+  createdBy: string;
 }
 
 interface CustomerDetails {
@@ -18,6 +20,8 @@ interface CustomerDetails {
   img: string | null;
   favoriteDishes: string[] | null;
   favoriteRestaurants: string[] | null;
+  orders: string[] | null;
+  creditCards: string[] | null;
 }
 
 interface RestaurantDetails {
@@ -26,8 +30,8 @@ interface RestaurantDetails {
   createdAt: string;
   description: string;
   title: string;
-  comments: string[] | null;
   img: string | null;
+  comments: string[] | null;
   foods: string[] | null;
 }
 
@@ -39,4 +43,11 @@ interface User {
   details: any | CustomerDetails | RestaurantDetails;
 }
 
-export type { CustomerDetails, RestaurantDetails, Food, User };
+interface Category {
+  id: string;
+  key: string;
+  img: string;
+  label: string;
+}
+
+export type { CustomerDetails, RestaurantDetails, Food, User, Category };

@@ -13,20 +13,26 @@
     <app-image-picker [imageUrl]="dishFormData.img" (newImgEvent)="handleDishImageChange($event)"></app-image-picker>
   </div>
   <div class="form-group">
-    <label for="name">Yemek İsmi</label>
+    <label for="name">Yemeğin Adı</label>
     <input type="text" class="form-control" id="title" name="title" [(ngModel)]="dishFormData.title" required>
   </div>
   <div class="form-group">
-    <label for="description">Yemek Açıklaması</label>
+    <label for="description">Açıklama</label>
     <input type="text" class="form-control" id="description" name="description" [(ngModel)]="dishFormData.description" required>
   </div>
   <div class="form-group">
-    <label for="main_price">Yemek Ana Fiyatı</label>
+    <label for="main_price">Orijinal Fiyat</label>
     <input type="text" class="form-control" id="main_price" name="main_price" [(ngModel)]="dishFormData.main_price" required>
   </div>
   <div class="form-group">
-    <label for="sales_price">Yemek Satış Fiyatı</label>
+    <label for="sales_price">İndirimli Fiyat</label>
     <input type="text" class="form-control" id="sales_price" name="sales_price" [(ngModel)]="dishFormData.sales_price" required>
   </div>
-  <button type="submit" [disabled]="!form.valid">Düzenle</button>
+  <div class="form-group">
+    <label for="sales_price">Kategori</label>
+    <select class="form-control" id="category" name="category" [(ngModel)]="dishFormData.category" required>
+        <option *ngFor="let category of categoryService.categories" [value]="category.key">{{ category.label }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!form.valid">Ekle</button>
 </form>
