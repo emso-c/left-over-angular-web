@@ -97,17 +97,21 @@ export class RestaurantAddDishComponent {
               this.foodService.addFood(food)
                 .then(() => {
                   this.isSubmitting = false;
+                  alert('Yemek başarıyla eklendi')
                   this.router.navigate(['/main'])
                 })
                 .catch((error) => {
-                  console.log(error);
                   this.isSubmitting = false;
+                  console.log(error);
+                  alert('Yemek eklenirken bir hata oluştu')
                 });
             })
         });
       })
       .catch((error) => {
+        this.isSubmitting = false;
         console.log(error);
+        alert('Yemek eklenirken bir hata oluştu')
       })
   }
 }

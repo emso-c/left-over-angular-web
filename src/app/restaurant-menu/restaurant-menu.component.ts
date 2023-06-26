@@ -43,21 +43,25 @@ export class RestaurantMenuComponent {
   }
 
   deleteFood(foodId: string) {
+    if (!confirm('Bu Yemeği Silmek İstediğinize Emin Misiniz?')) {
+      return;
+    }
     this.fetchingData = true;
     this.userService.deleteFood(foodId)
     .then(() => {
       this.foodService.deleteFood(foodId)
       .then(() => {
-        console.log('Food deleted successfully');
+        alert("Yemek başarıyla silindi.")
         this.fetchingData = false;
         window.location.reload();
       })
       .catch((error) => {
-        console.error(error);
+        alert("Yemek silinirken bir hata oluştu.")
         this.fetchingData = false;
       })
     })
     .catch((error) => {
+      alert("Yemek silinirken bir hata oluştu.")
       console.error(error);
       this.fetchingData = false;
     })
