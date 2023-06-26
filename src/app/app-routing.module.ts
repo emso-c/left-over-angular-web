@@ -21,7 +21,7 @@ const routes: Routes = [
   { title: 'Restaurant Comments', path: 'restaurant-comments', canActivate: [LoginGuard], component: RestaurantCommentsComponent },
   { title: 'Restaurant Add Dish', path: 'restaurant-add-dish', canActivate: [LoginGuard], component: RestaurantAddDishComponent },
   { title: 'Restaurant Edit Dish', path: 'restaurant-edit-dish/:id', canActivate: [LoginGuard], component: RestaurantEditDishComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
 ];
 
 @NgModule({
