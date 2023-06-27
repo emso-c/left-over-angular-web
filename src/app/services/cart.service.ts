@@ -5,7 +5,41 @@ import { Cart, Food } from '../shared/models';
   providedIn: 'root'
 })
 export class CartService {
-  cart: Cart = {items: []};
+  cart: Cart = {
+    items: []
+  };
+
+  get isEmpty(): boolean {
+    return this.cart.items.length === 0;
+  }
+
+  get totalQuantity(): number {
+    return this.cart.items.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  get totalSalesPrice(): number {
+    return this.cart.items.reduce((sum, item) => sum + item.food.sales_price * item.quantity, 0);
+  }
+
+  get totalMainPrice(): number {
+    return this.cart.items.reduce((sum, item) => sum + item.food.main_price * item.quantity, 0);
+  }
+
+  get hasMixedRestaurants(): boolean {
+    // check if the cart has items from more than one restaurant
+    return new Set(this.cart.items.map(item => item.food.createdBy)).size > 1;
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  constructor() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart);
+    }
+  }
 
   getQuantity(food: Food) {
     const item = this.cart.items.find(item => item.food._id === food._id);
@@ -19,6 +53,7 @@ export class CartService {
     else {
       this.addToCart(food);
     }
+    this.updateLocalStorage();
   }
   decreaseQuantity(food: Food) {
     const item = this.cart.items.find(item => item.food._id === food._id);
@@ -28,6 +63,7 @@ export class CartService {
         this.removeFromCart(food._id);
       }
     }
+    this.updateLocalStorage();
   }
   private addToCart(food: Food) {
     this.cart.items.push({

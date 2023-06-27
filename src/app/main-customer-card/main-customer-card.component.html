@@ -1,0 +1,79 @@
+<div *ngIf="!cartService.isEmpty">
+  <!-- <div *ngFor="let item of cartService.cart.items">
+    {{item.food.title}}
+    <button class="btn btn-primary" (click)="cartService.increaseQuantity(item.food)">
+      <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
+    </button>
+    <span>{{cartService.getQuantity(item.food)}}</span>
+    <button class="btn btn-danger" (click)="cartService.decreaseQuantity(item.food)">
+      <mat-icon mat-list-icon>remove_shopping_cart</mat-icon>
+    </button>
+  </div>
+  
+  <div class="">
+    <span class="d-block">İndirimsiz Ücret <span class="text-decoration-line-through">{{cartService.totalMainPrice}}</span></span>
+    <span class="d-block">İndirimli Ücret <span class="">{{cartService.totalSalesPrice}}</span></span>
+    <span class="d-block"><span class="">{{cartService.totalMainPrice-cartService.totalSalesPrice}}TL kar!</span></span>
+  </div>
+  <button mat-button (click)="confirmShoppingCart()">
+    Sepeti Onayla
+  </button> -->
+
+  <mat-stepper [linear]="true" #stepper>
+    
+    <!-- STEP 1: SEPETİ DÜZENLE  -->
+    <mat-step label="Sepetini Düzenle">
+      <div *ngFor="let item of cartService.cart.items">
+        {{item.food.title}}
+        <button class="btn btn-primary" (click)="cartService.increaseQuantity(item.food)">
+          <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
+        </button>
+        <span>{{cartService.getQuantity(item.food)}}</span>
+        <button class="btn btn-danger" (click)="cartService.decreaseQuantity(item.food)">
+          <mat-icon mat-list-icon>remove_shopping_cart</mat-icon>
+        </button>
+      </div>
+      
+      <div class="">
+        <span class="d-block">İndirimsiz Ücret <span class="text-decoration-line-through">{{cartService.totalMainPrice}}</span></span>
+        <span class="d-block">İndirimli Ücret <span class="">{{cartService.totalSalesPrice}}</span></span>
+        <span class="d-block"><span class="">{{cartService.totalMainPrice-cartService.totalSalesPrice}}TL kar!</span></span>
+      </div>
+     
+      <button mat-button (click)="firstFormGroup.markAllAsTouched()" matStepperNext>Sonraki</button>
+    </mat-step> 
+
+    <!-- STEP 2: ÖDEME YÖNTEMİNİ SEÇ -->
+    <mat-step label="Ödeme Yöntemi" [stepControl]="secondFormGroup">  
+      <div>
+        <button mat-button matStepperPrevious>Geri Dön</button>
+        <button mat-button matStepperNext>Sonraki</button>
+      </div>
+    </mat-step>
+
+    <!-- STEP 3: SİPARİŞ ÖZETİ -->
+    <mat-step label="Sipariş Özeti" [stepControl]="thirdFormGroup">
+
+      <div>
+        <button mat-button matStepperPrevious>Geri Dön</button>
+        <button mat-button matStepperNext>Sonraki</button>
+      </div>
+    </mat-step>
+    
+    
+    <!-- STEP 4: SİPARİŞİ GÖNDER -->
+    <mat-step>
+      <ng-template matStepLabel>Siparişi Gönder</ng-template>
+      <p>Siparişiniz Alındı. En kısa sürede hazırlanıp yola çıkacaktır.</p>
+      <div>
+        <button mat-button (click)="stepper.reset()">Başa Dön</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+
+</div>
+
+<div *ngIf="cartService.isEmpty">
+  <h3 class="text-center">Sepetinizde ürün bulunmamaktadır.</h3>
+</div>

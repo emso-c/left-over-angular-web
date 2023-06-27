@@ -20,10 +20,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -49,6 +51,7 @@ import { MainCustomerSearchComponent } from './main-customer-search/main-custome
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
+import { MainCustomerCardComponent } from './main-customer-card/main-customer-card.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,7 @@ import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaura
     MainCustomerRestaurantDetailsComponent,
     MainCustomerFoodDetailsComponent,
     MainCustomerSearchComponent,
+    MainCustomerCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +95,7 @@ import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaura
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

@@ -16,6 +16,7 @@ import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/ma
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
+import { MainCustomerCardComponent } from './main-customer-card/main-customer-card.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
         ],
       },
       { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
+      { title: 'My Cart', path: 'cart', component: MainCustomerCardComponent },
       { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },
       { path: '', redirectTo: '/main/home', pathMatch: 'full' },
     ]
