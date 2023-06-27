@@ -69,4 +69,23 @@ interface Campaign {
   title: string;
 }
 
-export type { CustomerDetails, RestaurantDetails, Food, User, Category, Comment, Campaign };
+interface CartItem {
+  food: Food;
+  quantity: number;
+}
+
+interface Cart {
+  items: CartItem[];
+}
+
+export type {
+  CustomerDetails,
+  RestaurantDetails,
+  Food,
+  User,
+  Category,
+  Comment,
+  Campaign,
+  CartItem,
+  Cart
+};

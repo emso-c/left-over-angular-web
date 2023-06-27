@@ -113,6 +113,37 @@ export class UserService {
     return setDoc(userRef, this.currentUser!.details!, { merge: true });
   }
 
+  addFavoriteDish(dishId: string){
+    if (this.currentUser!.details!.favoriteDishes.includes(dishId)) {
+      return new Promise((resolve, reject) => {
+        reject({
+          message: 'Yemek zaten favorilerinizde.',
+          code: 'dish-already-in-favorites'
+        });
+      });
+    }
+    this.currentUser!.details!.favoriteDishes.push(dishId);
+    const userRef = doc(this.firestore, 'users', this.currentUser!.details!._id);
+    return setDoc(userRef, this.currentUser!.details!, { merge: true });
+  }
+
+  removeFavoriteDish(dishId: string){
+    if (!this.currentUser!.details!.favoriteDishes.includes(dishId)) {
+      return new Promise((resolve, reject) => {
+        reject({
+          message: 'Yemek favorilerinizde değil.',  
+          code: 'dish-not-in-favorites'
+        });
+      });
+    }
+    const dishIndex = this.currentUser!.details!.favoriteDishes.findIndex(
+      (dish: string) => dish === dishId
+    );
+    this.currentUser!.details!.favoriteDishes.splice(dishIndex, 1); 
+    const userRef = doc(this.firestore, 'users', this.currentUser!.details!._id);
+    return setDoc(userRef, this.currentUser!.details!, { merge: true });
+  }
+
   setUsers(users: User[]) {
     this.users = users;
   }

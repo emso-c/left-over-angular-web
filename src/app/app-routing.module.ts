@@ -14,21 +14,28 @@ import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
+import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
+import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
   { title: 'Signup', path: 'signup', component: SignupComponent },
-  {
-    title: 'Main', path: 'main', component: MainComponent, canActivate: [LoginGuard],
+  { title: 'Main', path: 'main', component: MainComponent, canActivate: [LoginGuard],
     children: [
-      { title: 'Customer', path: 'home', component: MainCustomerComponent },
-      {
-        title: 'Restaurants', path: 'restaurants',
+      { title: 'Home', path: 'home', component: MainCustomerComponent },
+      { title: 'Restaurants', path: 'restaurants',
         children: [
-          { title: 'Restaurant Details', path: ':id', component: MainCustomerRestaurantDetailsComponent },
           { title: 'Restaurants', path: '', component: MainCustomerRestaurantsComponent },
+          { title: 'Restaurant Details', path: ':id', 
+            children: [
+              { title: 'Restaurant Details', path: '', component: MainCustomerRestaurantDetailsComponent },
+              { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },
+            ]
+          },
         ],
       },
+      { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
+      { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },
       { path: '', redirectTo: '/main/home', pathMatch: 'full' },
     ]
   },

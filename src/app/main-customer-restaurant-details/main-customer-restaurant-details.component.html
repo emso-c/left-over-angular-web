@@ -19,8 +19,8 @@
   <mat-tab label="Menu">
     <div *ngIf="foodService.foods.length > 0">
       <ul *ngFor="let food of foodService.foods">
-        <li *ngIf="restaurant?.details.foods.includes(food._id)">
-          <img src="{{food.img}}" alt="food image" width="200px" height="200px">
+        <li (click)="handleFoodClick(food._id, restaurant?.details._id)" *ngIf="restaurant?.details.foods.includes(food._id)">
+          <img  src="{{food.img}}" alt="food image" width="200px" height="200px">
           <h3>{{food.title}}</h3>
           <p>{{food.description}}</p>
           <p class="text-decoration-line-through">{{food.main_price}}</p>

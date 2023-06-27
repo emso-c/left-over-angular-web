@@ -44,6 +44,8 @@ import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-e
 import { MainCustomerLayoutComponent } from './main-customer-layout/main-customer-layout.component';
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
+import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
+import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaura
     MainCustomerLayoutComponent,
     MainCustomerRestaurantsComponent,
     MainCustomerRestaurantDetailsComponent,
+    MainCustomerSearchComponent,
+    MainCustomerFoodDetailsComponent,
   ],
   imports: [
     BrowserModule,

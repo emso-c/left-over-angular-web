@@ -1,0 +1,20 @@
+<div *ngIf="!food" class="fullscreen-loading"></div>
+
+<div *ngIf="food">
+  <img src="{{food.img}}" alt="food image" width="200px" height="200px">
+  <mat-icon (click)="handleFavorite(food._id)" mat-list-icon>
+    star{{userService.currentUser?.details?.favoriteDishes?.includes(food._id) ? '':'_outline'}}
+  </mat-icon>
+  <h3>{{food.title}}</h3>
+  <p>{{food.description}}</p>
+  <p class="text-decoration-line-through">{{food.main_price}}</p>
+  <p>{{food.sales_price}}</p>
+  <p>%{{discount}} indirim</p>
+  <button class="btn btn-primary" (click)="cartService.increaseQuantity(food)">
+    <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
+  </button>
+  <span>{{cartService.getQuantity(food)}}</span>
+  <button class="btn btn-danger" (click)="cartService.decreaseQuantity(food)">
+    <mat-icon mat-list-icon>remove_shopping_cart</mat-icon>
+  </button>
+</div>

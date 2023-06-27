@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/models';
 import { CommentService } from '../services/comment.service';
@@ -18,12 +18,17 @@ export class MainCustomerRestaurantDetailsComponent {
   foodService: FoodService = inject(FoodService);
   utilsService: UtilsService = inject(UtilsService);
   restaurant: User | undefined;
+  router: Router = inject(Router);
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.restaurant = this.userService.getUserByCompositeId(id)
     });
+  }
+
+  handleFoodClick(foodId: string, restaurantId: string) {
+    this.router.navigate([`/main/restaurants/${restaurantId}/foods/${foodId}`])
   }
 
   handleFavorite(restaurantCompositeId: string) {
