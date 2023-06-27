@@ -7,6 +7,12 @@
 <mat-drawer-container class="example-container vh-100" autosize>
   <mat-drawer #drawer opened class="example-sidenav" mode="side">
     <mat-nav-list>
+      <a routerLink="profile"> 
+        <mat-list-item matTooltip="Profil" matTooltipPosition="after" matTooltipHideDelay="200">
+          <img src={{userService.currentUser?.details?.img}} width="30" height="30">
+        </mat-list-item>
+      </a>
+      <mat-divider></mat-divider>
       <a routerLink="home"> 
         <mat-list-item matTooltip="Ana Sayfa" matTooltipPosition="after" matTooltipHideDelay="200">
           <mat-icon mat-list-icon>home</mat-icon>

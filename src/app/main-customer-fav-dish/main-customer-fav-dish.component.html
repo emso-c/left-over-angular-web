@@ -1,0 +1,11 @@
+<div *ngFor='let food of foods'>
+  <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
+  <h3>{{food.title}}</h3>
+  <p>{{food.description}}</p>
+</div>
+
+<div *ngFor="let food of foods">
+  <div>
+    {{food.title}}
+  </div>
+</div>

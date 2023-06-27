@@ -52,6 +52,10 @@ import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/ma
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 import { MainCustomerCardComponent } from './main-customer-card/main-customer-card.component';
+import { MainCustomerProfileComponent } from './main-customer-profile/main-customer-profile.component';
+import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
+import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
+import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +78,10 @@ import { MainCustomerCardComponent } from './main-customer-card/main-customer-ca
     MainCustomerFoodDetailsComponent,
     MainCustomerSearchComponent,
     MainCustomerCardComponent,
+    MainCustomerProfileComponent,
+    MainCustomerFavDishComponent,
+    MainCustomerFavRestaurantComponent,
+    MainCustomerPaymentMethodsComponent,
   ],
   imports: [
     BrowserModule,

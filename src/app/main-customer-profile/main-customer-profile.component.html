@@ -1,0 +1,30 @@
+<div *ngIf="!userService.loaded" class="fullscreen-loading"></div>
+
+<!-- profile section: Only show circle img, name, surname, email -->
+<div *ngIf="userService.loaded">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="profile-img">
+          <img src={{userService.currentUser?.details?.img}} width="200" height="200">
+        </div>
+        <div class="profile-head">
+          <h2><b>
+            {{userService.currentUser?.details?.name}} {{userService.currentUser?.details?.surname}}
+          </b></h2>
+          <h3>
+            {{userService.currentUser?.details?.email}}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a routerLink="favorite-dishes">
+  Favorite Dishes
+</a>
+<br>
+<a routerLink="favorite-restaurants">
+  Favorite Restaurants
+</a>

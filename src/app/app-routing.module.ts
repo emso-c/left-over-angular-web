@@ -17,6 +17,9 @@ import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaura
 import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 import { MainCustomerCardComponent } from './main-customer-card/main-customer-card.component';
+import { MainCustomerProfileComponent } from './main-customer-profile/main-customer-profile.component';
+import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
+import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -33,8 +36,13 @@ const routes: Routes = [
               { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },
             ]
           },
-        ],
-      },
+      ]},
+      { title: 'Profile', path: 'profile',
+        children: [
+          { title: 'Profile', path: '', component: MainCustomerProfileComponent },
+          { title: 'Favorite Dishes', path: 'favorite-dishes', component: MainCustomerFavDishComponent },
+          { title: 'Favorite Restaurants', path: 'favorite-restaurants', component: MainCustomerFavRestaurantComponent },
+        ]},
       { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
       { title: 'My Cart', path: 'cart', component: MainCustomerCardComponent },
       { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },

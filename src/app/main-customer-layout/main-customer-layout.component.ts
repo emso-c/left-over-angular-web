@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -7,5 +8,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./main-customer-layout.component.css']
 })
 export class MainCustomerLayoutComponent {
-  
+  userService: UserService = inject(UserService)
 }

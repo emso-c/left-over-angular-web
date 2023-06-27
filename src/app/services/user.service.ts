@@ -175,7 +175,7 @@ export class UserService {
         name: userProfile['name'],
         surname: userProfile['surname'],
         gender: userProfile['gender'],
-        img: userProfile['img'],
+        img: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png' ?? userProfile['img'],
         favoriteDishes: userProfile['favoriteDishes'] ?? [],
         favoriteRestaurants: userProfile['favoriteRestaurants'] ?? [],
         comments: userProfile['comments'] ?? [],
@@ -189,7 +189,7 @@ export class UserService {
         createdAt: userProfile['createdAt'],
         description: userProfile['description'],
         title: userProfile['title'],
-        img: userProfile['img'],
+        img: 'https://previews.123rf.com/images/bestvectorstock/bestvectorstock1808/bestvectorstock180809378/111743862-restaurant-icon-vector-isolated-on-white-background-restaurant-transparent-sign-line-or-linear.jpg' ?? userProfile['img'],
         comments: userProfile['comments'] ?? [],
         foods: userProfile['foods'] ?? [],
       }
