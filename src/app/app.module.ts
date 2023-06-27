@@ -13,6 +13,7 @@ import { CarouselModule } from 'primeng/carousel';
 
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -42,6 +43,7 @@ import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-co
 import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
 import { MainCustomerLayoutComponent } from './main-customer-layout/main-customer-layout.component';
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
+import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/ma
     RestaurantEditDishComponent,
     MainCustomerLayoutComponent,
     MainCustomerRestaurantsComponent,
+    MainCustomerRestaurantDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/ma
     MatToolbarModule,
     MatIconModule,
     MatTooltipModule,
+    MatTabsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

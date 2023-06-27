@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-customer-restaurants',
@@ -9,7 +10,11 @@ import { User } from '../shared/models';
 })
 export class MainCustomerRestaurantsComponent {
   userService: UserService = inject(UserService)
-
+  router: Router = inject(Router)
+  
+  handleRestaurantClick(restaurantCompositeId: string) {
+    this.router.navigate(['/main/restaurants/' + restaurantCompositeId])
+  }
   handleFavorite(restaurantCompositeId: string) {
     if (this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)){
       this.userService.removeFavoriteRestaurant(restaurantCompositeId)

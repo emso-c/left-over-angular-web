@@ -4,7 +4,7 @@
 <div *ngIf="userService.loaded">
   <ul *ngFor="let restaurant of userService.users">
     <li *ngIf="restaurant.details?.type==='restaurant'">
-      <img src={{restaurant.details.img}} width="100" height="100">
+      <img (click)="handleRestaurantClick(restaurant.details._id)" src={{restaurant.details.img}} width="100" height="100">
       <h3>{{restaurant.details.title}}</h3>
       <h4>{{restaurant.details.description}}</h4>
       <h5>{{restaurant.details.comments.length}} comments</h5>

@@ -25,6 +25,16 @@ export class UtilsService {
     const monthNumber = months.indexOf(month) + 1;
     return monthNumber < 10 ? `0${monthNumber}` : monthNumber.toString();
   }
+
+  getTurkishMonth(month: string): string {
+    // example: from "Jun" to "Haziran"
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+                    'Nov', 'Dec'];
+    const turkishMonths = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz',
+                            'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    const monthNumber = months.indexOf(month);
+    return turkishMonths[monthNumber];
+  }
   
   formatDate(date: string): string {
     // example: from "Sun Jun 13 2021 16:19:00 GMT+0300" to "13/05/2021 16:19:00 öö" (öö = öğleden önce = AM, ös = öğleden sonra = PM)
@@ -34,6 +44,16 @@ export class UtilsService {
     const year = dateParts[3];
     const time = dateParts[4];
     const parsedDate = `${day}/${month}/${year} ${time}`;
+    return parsedDate;
+  }
+
+  humanReadableDate(date: string): string {
+    // from 'Tue Jun 13 2023 09:34:56 GMT+0300' TO '19 Haziran 2023'
+    const dateParts = date.split(' ');
+    const day = dateParts[2];
+    const month = dateParts[1];
+    const year = dateParts[3];
+    const parsedDate = `${day} ${this.getTurkishMonth(month)} ${year}`;
     return parsedDate;
   }
 }

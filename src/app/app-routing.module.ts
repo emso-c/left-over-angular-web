@@ -13,6 +13,7 @@ import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-e
 import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
+import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -20,8 +21,14 @@ const routes: Routes = [
   {
     title: 'Main', path: 'main', component: MainComponent, canActivate: [LoginGuard],
     children: [
-      { title: 'Main Customer', path: 'home', component: MainCustomerComponent },
-      { title: 'Main Customer', path: 'restaurants', component: MainCustomerRestaurantsComponent },
+      { title: 'Customer', path: 'home', component: MainCustomerComponent },
+      {
+        title: 'Restaurants', path: 'restaurants',
+        children: [
+          { title: 'Restaurant Details', path: ':id', component: MainCustomerRestaurantDetailsComponent },
+          { title: 'Restaurants', path: '', component: MainCustomerRestaurantsComponent },
+        ],
+      },
       { path: '', redirectTo: '/main/home', pathMatch: 'full' },
     ]
   },
