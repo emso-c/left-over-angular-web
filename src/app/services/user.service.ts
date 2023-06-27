@@ -43,6 +43,10 @@ export class UserService {
     });
   }
 
+  getRestaurants() {
+    return this.users.filter((user) => user.details?.type === 'restaurant');
+  }
+
   private generateUUID(): string {
     let d = new Date().getTime();
     const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -77,6 +81,36 @@ export class UserService {
     this.currentUser!.details = details;
     const userRef = doc(this.firestore, 'users', details._id);
     return setDoc(userRef, details, { merge: true });
+  }
+
+  addFavoriteRestaurant(restaurantCompositeId: string){
+    if (this.currentUser!.details!.favoriteRestaurants.includes(restaurantCompositeId)) {
+      return new Promise((resolve, reject) => {
+        reject({
+          message: 'Restoran zaten favorilerinizde.',
+          code: 'restaurant-already-in-favorites'
+        });
+      });
+    }
+    this.currentUser!.details!.favoriteRestaurants.push(restaurantCompositeId);
+    const userRef = doc(this.firestore, 'users', this.currentUser!.details!._id);
+    return setDoc(userRef, this.currentUser!.details!, { merge: true });
+  }
+  removeFavoriteRestaurant(restaurantCompositeId: string){
+    if (!this.currentUser!.details!.favoriteRestaurants.includes(restaurantCompositeId)) {
+      return new Promise((resolve, reject) => {
+        reject({
+          message: 'Restoran favorilerinizde değil.',
+          code: 'restaurant-not-in-favorites'
+        });
+      });
+    }
+    const restaurantIndex = this.currentUser!.details!.favoriteRestaurants.findIndex(
+      (restaurant: string) => restaurant === restaurantCompositeId
+    );
+    this.currentUser!.details!.favoriteRestaurants.splice(restaurantIndex, 1);
+    const userRef = doc(this.firestore, 'users', this.currentUser!.details!._id);
+    return setDoc(userRef, this.currentUser!.details!, { merge: true });
   }
 
   setUsers(users: User[]) {

@@ -1,1 +1,53 @@
-<p>main-customer works!</p>
+<div class="fullscreen-loading" *ngIf="!categoryService.loaded || !campaignService.loaded"></div>
+
+<div *ngIf="categoryService.loaded">
+  <p-carousel
+  [value]="categoryService.categories"
+  [numVisible]="7"
+  [numScroll]="1"
+  [responsiveOptions]="responsiveOptions"
+  [showIndicators]="false"
+  [circular]="true"
+  >
+    <ng-template pTemplate="header">
+      <p>Kategoriler</p>
+    </ng-template>
+    <ng-template let-category pTemplate="item">
+      <div class="category-item">
+        <div class="category-item-content">
+          <img src={{category.img}} width="50" height="50" [alt]="category.label" class="category-image" />
+          <h4 class="mb-1">{{ category.label }}</h4>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p>Footer content</p>
+    </ng-template>
+  </p-carousel>
+</div>
+
+<div *ngIf="campaignService.loaded">
+  <p-carousel
+  [value]="campaignService.campaigns"
+  [numVisible]="1"
+  [numScroll]="1"
+  [showIndicators]="true"
+  [circular]="true"
+  [autoplayInterval]="5000"
+  >
+    <ng-template pTemplate="header">
+      <p>Kampanyalar</p>
+    </ng-template>
+    <ng-template let-campaign pTemplate="item">
+      <div class="campaign-item">
+        <div class="campaign-item-content">
+          <img src={{campaign.img}} width="200" height="100" [alt]="campaign.label" class="campaign-image" />
+          <h4 class="mb-1">{{ campaign.label }}</h4>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p>Footer content</p>
+    </ng-template>
+  </p-carousel>
+</div>

@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="example-toolbar">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+	<h1 class="example-app-name text-white">Leftover</h1>
+</mat-toolbar>
+<mat-drawer-container class="example-container vh-100" autosize>
+  <mat-drawer #drawer opened class="example-sidenav" mode="side">
+    <mat-nav-list>
+      <a routerLink="home"> 
+        <mat-list-item matTooltip="Ana Sayfa" matTooltipPosition="after" matTooltipHideDelay="200">
+          <mat-icon mat-list-icon>home</mat-icon>
+        </mat-list-item>
+      </a>
+      <mat-divider></mat-divider>
+      <a routerLink="restaurants"> 
+        <mat-list-item matTooltip="Restoranlar" matTooltipPosition="after" matTooltipHideDelay="200">
+          <mat-icon mat-list-icon>restaurant_menu</mat-icon>
+        </mat-list-item>
+      </a>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="Arama" matTooltipPosition="after" matTooltipHideDelay="200">
+        <mat-icon mat-list-icon>search</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="Sepetim" matTooltipPosition="after" matTooltipHideDelay="200">
+        <mat-icon mat-list-icon>shopping_cart</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="Oturumu Kapat" matTooltipPosition="after" matTooltipHideDelay="200">
+        <mat-icon mat-list-icon>logout</mat-icon>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

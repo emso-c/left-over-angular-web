@@ -1,37 +1,47 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { CarouselModule } from 'primeng/carousel';
+
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { MainComponent } from './main/main.component';
-import { FormsModule } from '@angular/forms';
-import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ImagePickerComponent } from './image-picker/image-picker.component';
-import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
 import { MainCustomerComponent } from './main-customer/main-customer.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
 import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
-import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-comments.component';
 import { RestaurantAddDishComponent } from './restaurant-add-dish/restaurant-add-dish.component';
+import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-comments.component';
 import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
+import { MainCustomerLayoutComponent } from './main-customer-layout/main-customer-layout.component';
+import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +58,8 @@ import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-e
     RestaurantCommentsComponent,
     RestaurantAddDishComponent,
     RestaurantEditDishComponent,
+    MainCustomerLayoutComponent,
+    MainCustomerRestaurantsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +72,11 @@ import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-e
     MatButtonModule,
     MatInputModule,
     MatListModule,
+    CarouselModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTooltipModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

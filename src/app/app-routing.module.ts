@@ -10,11 +10,21 @@ import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-co
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { RestaurantAddDishComponent } from './restaurant-add-dish/restaurant-add-dish.component';
 import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
+import { MainCustomerComponent } from './main-customer/main-customer.component';
+import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
+import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
   { title: 'Signup', path: 'signup', component: SignupComponent },
-  { title: 'Main', path: 'main', component: MainComponent, canActivate: [LoginGuard] },
+  {
+    title: 'Main', path: 'main', component: MainComponent, canActivate: [LoginGuard],
+    children: [
+      { title: 'Main Customer', path: 'home', component: MainCustomerComponent },
+      { title: 'Main Customer', path: 'restaurants', component: MainCustomerRestaurantsComponent },
+      { path: '', redirectTo: '/main/home', pathMatch: 'full' },
+    ]
+  },
   { title: 'Profile Details', path: 'profile-details/:id', canActivate: [LoginGuard], component: ProfileDetailsComponent },
   { title: 'Restaurant Edit', path: 'restaurant-edit', canActivate: [LoginGuard], component: RestaurantEditComponent },
   { title: 'Restaurant Menu', path: 'restaurant-menu', canActivate: [LoginGuard], component: RestaurantMenuComponent },
