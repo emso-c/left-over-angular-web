@@ -3,14 +3,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 
+// firebase
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
+// primeng
 import { CarouselModule } from 'primeng/carousel';
 
+// material
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -22,12 +25,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-import { FormsModule } from '@angular/forms';
+// components
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
@@ -42,10 +45,10 @@ import { RestaurantAddDishComponent } from './restaurant-add-dish/restaurant-add
 import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-comments.component';
 import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
 import { MainCustomerLayoutComponent } from './main-customer-layout/main-customer-layout.component';
-import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
-import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
+import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
+import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -65,8 +68,8 @@ import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/m
     MainCustomerLayoutComponent,
     MainCustomerRestaurantsComponent,
     MainCustomerRestaurantDetailsComponent,
-    MainCustomerSearchComponent,
     MainCustomerFoodDetailsComponent,
+    MainCustomerSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,9 @@ import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/m
     MatIconModule,
     MatTooltipModule,
     MatTabsModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
