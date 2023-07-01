@@ -60,6 +60,7 @@ import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-cust
 import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
 import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
+import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/mai
     MainCustomerFavRestaurantComponent,
     MainCustomerPaymentMethodsComponent,
     MainCustomerPaymentAddComponent,
+    MainCustomerProfileUpdateComponent,
   ],
   imports: [
     BrowserModule,

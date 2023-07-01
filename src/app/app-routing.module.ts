@@ -22,6 +22,7 @@ import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-cust
 import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
 import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
+import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
       { title: 'Profile', path: 'profile',
         children: [
           { title: 'Profile', path: '', component: MainCustomerProfileComponent },
+          { title: 'Update Profile', path: 'update', component: MainCustomerProfileUpdateComponent },
           { title: 'Favorite Dishes', path: 'favorite-dishes', component: MainCustomerFavDishComponent },
           { title: 'Favorite Restaurants', path: 'favorite-restaurants', component: MainCustomerFavRestaurantComponent },
           { title: 'Payment Methods', path: 'payment-methods', 

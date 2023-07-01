@@ -175,7 +175,7 @@ export class UserService {
         name: userProfile['name'],
         surname: userProfile['surname'],
         gender: userProfile['gender'],
-        img: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png' ?? userProfile['img'],
+        img: userProfile['img'],
         favoriteDishes: userProfile['favoriteDishes'] ?? [],
         favoriteRestaurants: userProfile['favoriteRestaurants'] ?? [],
         comments: userProfile['comments'] ?? [],

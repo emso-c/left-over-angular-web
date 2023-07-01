@@ -1,6 +1,5 @@
 <div *ngIf="!userService.loaded" class="fullscreen-loading"></div>
 
-<!-- profile section: Only show circle img, name, surname, email -->
 <div *ngIf="userService.loaded">
   <div class="container">
     <div class="row">
@@ -21,6 +20,10 @@
   </div>
 </div>
 
+<a routerLink="update">
+  Profil Bilgilerimi Güncelle
+</a>
+<br>
 <a routerLink="favorite-dishes">
   Favori Yiyeceklerim
 </a>
