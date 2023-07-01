@@ -25,12 +25,15 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 // components
 import { AppComponent } from './app.component';
@@ -56,6 +59,7 @@ import { MainCustomerProfileComponent } from './main-customer-profile/main-custo
 import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
 import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
 import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
+import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,7 @@ import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-met
     MainCustomerFavDishComponent,
     MainCustomerFavRestaurantComponent,
     MainCustomerPaymentMethodsComponent,
+    MainCustomerPaymentAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +109,8 @@ import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-met
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

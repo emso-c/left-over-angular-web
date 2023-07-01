@@ -56,4 +56,24 @@ export class UtilsService {
     const parsedDate = `${day} ${this.getTurkishMonth(month)} ${year}`;
     return parsedDate;
   }
+
+  generateUUID(): string {
+    let d = new Date().getTime();
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (d + Math.random() * 16) % 16 | 0;
+      d = Math.floor(d/16);
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
+  parseExpirationDate(date: any): string {
+    // FROM object: Thu Jul 20 2023 00:00:00 GMT+0300 (GMT+03:00)
+    // TO string: 07/23
+    const dateParts = date.toString().split(' ');
+    const month = dateParts[1];
+    const monthNumber = this.getMonthNumber(month);
+    const year = dateParts[3].slice(2, 4);
+    return `${monthNumber}/${year}`;
+  }
 }

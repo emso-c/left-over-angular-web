@@ -20,6 +20,8 @@ import { MainCustomerCardComponent } from './main-customer-card/main-customer-ca
 import { MainCustomerProfileComponent } from './main-customer-profile/main-customer-profile.component';
 import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
 import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
+import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
+import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -42,6 +44,12 @@ const routes: Routes = [
           { title: 'Profile', path: '', component: MainCustomerProfileComponent },
           { title: 'Favorite Dishes', path: 'favorite-dishes', component: MainCustomerFavDishComponent },
           { title: 'Favorite Restaurants', path: 'favorite-restaurants', component: MainCustomerFavRestaurantComponent },
+          { title: 'Payment Methods', path: 'payment-methods', 
+            children: [
+              { title: 'Payment Methods', path: '', component: MainCustomerPaymentMethodsComponent },
+              { title: 'Add Payment Method', path: 'add', component: MainCustomerPaymentAddComponent },
+            ],
+          },
         ]},
       { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
       { title: 'My Cart', path: 'cart', component: MainCustomerCardComponent },

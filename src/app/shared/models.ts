@@ -78,6 +78,16 @@ interface Cart {
   items: CartItem[];
 }
 
+interface CreditCard {
+  _id: string;
+  company: string;
+  createdBy: string;
+  cvc: string;
+  expirationDate: string;
+  number: string;
+  placeholder: string;
+}
+
 export type {
   CustomerDetails,
   RestaurantDetails,
@@ -87,5 +97,6 @@ export type {
   Comment,
   Campaign,
   CartItem,
-  Cart
+  Cart,
+  CreditCard
 };

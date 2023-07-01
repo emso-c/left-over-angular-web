@@ -1,0 +1,56 @@
+<div class="container p-1">
+  <h2 class="pt-5">Ödeme Yöntemi Ekle</h2>
+  <form (ngSubmit)="handleSubmit()" #form="ngForm">
+    <mat-form-field [style.width.px]=300 appearance="outline">
+      <mat-label>Kategori</mat-label>
+      <mat-select
+      name="category"
+      disableOptionCentering
+      [(ngModel)]="creditCard.company"
+      required
+      >
+      <div class="w-100 p-2 d-flex flex-column">
+        <mat-option class="border border-2 rounded w-100 p-2 m-1" *ngFor="let company of paymentService.companies" [value]="company.key">
+          <img src="{{ company.imgURL }}" alt="category" width="80" height="50" class="rounded-2">
+          <span class="mx-2 my-auto">{{ company.name }}</span>
+          <span class="float-end"></span>
+        </mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-group">
+      <mat-form-field [style.width.px]=300 appearance="outline">
+        <mat-label>Kart Numarası</mat-label>
+        <input matInput class="form-control" id="number" name="number" [(ngModel)]="creditCard.number" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field [style.width.px]=300 appearance="outline">
+        <mat-label>CVC Kodu</mat-label>
+        <input matInput type="text" class="form-control" id="cvc" name="cvc" [(ngModel)]="creditCard.cvc" required>
+      </mat-form-field>
+    </div>
+    <!-- <div class="form-group">
+      <mat-form-field [style.width.px]=300 appearance="outline">
+        <mat-label>Kartın Son Kullanma Tarihi</mat-label>
+        <input matInput type="text" class="form-control" id="expirationDate" name="expirationDate" [(ngModel)]="creditCard.expirationDate" required>
+      </mat-form-field>
+    </div> -->
+    <mat-form-field [style.width.px]=300 appearance="outline">
+      <mat-label>Kartın Son Kullanma Tarihi</mat-label>
+      <input matInput [matDatepicker]="dp" id="expirationDate" name="expirationDate" [(ngModel)]="creditCard.expirationDate">
+      <mat-hint></mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp></mat-datepicker>
+    </mat-form-field>
+    <div class="form-group">
+      <mat-form-field [style.width.px]=300 appearance="outline">
+        <mat-label>Kart Üzerindeki İsim</mat-label>
+        <input matInput class="form-control" id="placeholder" name="placeholder" [(ngModel)]="creditCard.placeholder" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <button mat-raised-button type="submit" [disabled]="!form.valid">Ekle</button>
+    </div>
+  </form>
+</div>

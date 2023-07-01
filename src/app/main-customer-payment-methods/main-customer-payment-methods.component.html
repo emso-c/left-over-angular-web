@@ -1,0 +1,37 @@
+<div *ngFor="let creditCard of creditCards">
+  <div class="d-flex justify-content-center align-content-center">
+    <div *ngIf="creditCard.createdBy == userService.currentUser?.details?._id">
+      <div class="container">
+        <div class="creditCard">
+          <div class="d-flex flex-column h-100">
+            <div class="row flex-fill">
+              <div class="col"></div>
+              <div class="col-6">
+                <img src="{{ paymentService.getCompany(creditCard.company)?.imgURL }}" alt="category" width="80" height="50" class="mx-2">
+                <b>{{ paymentService.getCompany(creditCard.company)?.name }}</b>
+              </div>
+            </div>
+            <div class="row flex-fill">
+              <div class="col">
+                <p>Kart Numarası</p>
+                <h2 style="color: white">{{ paymentService.maskCardNumber(creditCard.number) }}</h2>
+              </div>
+              <div class="col"></div>
+            </div>
+            <div class="row flex-fill align-items-end">
+              <div class="col">{{creditCard.placeholder}}</div>
+              <div class="col">
+                <div class="text-end">
+                  <p>Son Kullanma Tarihi</p>
+                  <p>{{creditCard.expirationDate | date: 'MM/yy'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<a routerLink="add">Ödeme Yöntemi Ekle</a>
