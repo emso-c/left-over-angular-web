@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilsService {
+  consts = {
+    TAX: 12.5,
+  }
+
   getCurrentDate(): string {
     return new Date().toLocaleString('en-US', {
       weekday: 'short',   // Short weekday name (e.g., Sun)

@@ -203,4 +203,9 @@ export class UserService {
     }
     return user;
   }
+
+  getRestaurantByFoodId(foodId: string): User | undefined {
+    console.log()
+    return this.users.find(user => user.details?.foods?.find((food: string) => food === foodId));
+  }
 }

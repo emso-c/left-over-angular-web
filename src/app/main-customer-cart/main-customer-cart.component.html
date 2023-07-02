@@ -17,31 +17,134 @@
       <div class="">
         <span class="d-block">İndirimsiz Ücret <span class="text-decoration-line-through">{{cartService.totalMainPrice}}</span></span>
         <span class="d-block">İndirimli Ücret <span class="">{{cartService.totalSalesPrice}}</span></span>
-        <span class="d-block"><span class="">{{cartService.totalMainPrice-cartService.totalSalesPrice}}TL kar!</span></span>
       </div>
      
-      <button mat-button (click)="firstFormGroup.markAllAsTouched()" matStepperNext>Sonraki</button>
+      <button mat-button matStepperNext>Sonraki</button>
     </mat-step> 
 
     <!-- STEP 2: ÖDEME YÖNTEMİNİ SEÇ -->
-    <mat-step label="Ödeme Yöntemi" [stepControl]="secondFormGroup">  
-      <div>
-        <button mat-button matStepperPrevious>Geri Dön</button>
-        <button mat-button matStepperNext>Sonraki</button>
-      </div>
+    <mat-step label="Ödeme Yöntemi" [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <div *ngFor="let creditCard of creditCards">
+          <div *ngIf="creditCard.createdBy == userService.currentUser?.details?._id" class="creditCard">
+            <button (click)="handleCreditCardClick(creditCard)" class="border border-2 rounded-2 border-{{selectedCreditCard==creditCard?'warning':''}}">
+              <div class="row">
+                <div class="col-4">
+                  <img src="{{ paymentService.getCompany(creditCard.company)?.imgURL }}" alt="category" width="80" height="50" class="mx-2">
+                </div>
+                <div class="col">
+                  <div class="text-start">
+                    <p>{{ paymentService.getCompany(creditCard.company)?.name }}</p>
+                    <b>{{ paymentService.maskCardNumber(creditCard.number) }}</b>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Geri Dön</button>
+          <button mat-button matStepperNext id="second-form-button" (click)="handleSecondForm()">Sonraki</button>
+        </div>
+      </form>
+        
     </mat-step>
 
     <!-- STEP 3: SİPARİŞ ÖZETİ -->
     <mat-step label="Sipariş Özeti" [stepControl]="thirdFormGroup">
-
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex flex-column h-100">
+              <div class="row flex-fill">
+                <div class="col">
+                  <h2 class="fw-bolder">Sepetteki Yemeklerim</h2>
+                </div>
+              </div>
+              <div *ngFor="let item of cartService.cart.items">
+                <div class="row flex-fill fw-bold">
+                  <div class="col">
+                    <p>{{item.food.title}} {{item.food.sales_price}}&#8378;</p>
+                  </div>
+                  <div class="col">
+                    <p class="text-end fw-light">x{{cartService.getQuantity(item.food)}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div>
+            <h2 class="fw-bolder">Seçilen Ödeme Yöntemi</h2>
+            <button *ngIf="selectedCreditCard" class="border border-2 rounded-2 border-warning">
+              <div class="row">
+                <div class="col-4">
+                  <img src="{{ paymentService.getCompany(selectedCreditCard!.company)?.imgURL}}" alt="category" width="80" height="50" class="mx-2">
+                </div>
+                <div class="col">
+                  <div class="text-start">
+                    <p>{{ paymentService.getCompany(selectedCreditCard!.company)?.name }}</p>
+                    <b>{{ paymentService.maskCardNumber(selectedCreditCard!.number) }}</b>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col">
+            <div class="d-flex flex-column h-100">
+              <div class="row flex-fill">
+                <div class="col">
+                  <h2 class="fw-bolder">Fatura</h2>
+                </div>
+              </div>
+              <div class="row flex-fill fw-bold">
+                <div class="col">
+                  <p>Sepet Tutarı</p>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{cartService.totalSalesPrice}}TL</p>
+                </div>
+              </div>
+              <div class="row flex-fill fw-bold">
+                <div class="col">
+                  <p>Vergi ve Kesintiler</p>
+                </div>
+                <div class="col">
+                  <p class="text-end">{{utilsService.consts.TAX}} TL</p>
+                </div>
+              </div>
+              <div class="row flex-fill fw-bold">
+                <div class="col">
+                  <p>Kargo</p>
+                </div>
+                <div class="col">
+                  <p class="text-end">Ücretsiz</p>
+                </div>
+              </div>
+              <div class="row flex-fill text-danger fs-6 fw-bolder">
+                  <div class="col">
+                    <p><b>Toplam</b></p>
+                  </div>
+                  <div class="col">
+                    <p class="text-end"><b>{{cartService.totalSalesPrice + utilsService.consts.TAX}}TL</b></p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Geri Dön</button>
-        <button mat-button matStepperNext>Sonraki</button>
+        <button mat-button id="third-form-button" matStepperNext (click)="handleThirdForm()">Siparişi Onayla</button>
       </div>
     </mat-step>
-    
-    
-    <!-- STEP 4: SİPARİŞİ GÖNDER -->
+
+    <!-- STEP 4: SİPARİŞİ GÖNEDRİLDİ -->
     <mat-step>
       <ng-template matStepLabel>Siparişi Gönder</ng-template>
       <p>Siparişiniz Alındı. En kısa sürede hazırlanıp yola çıkacaktır.</p>

@@ -23,6 +23,7 @@ import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaura
 import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
 import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
+import { MainCustomerOrderSuccessComponent } from './main-customer-order-success/main-customer-order-success.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -55,6 +56,7 @@ const routes: Routes = [
         ]},
       { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
       { title: 'My Cart', path: 'cart', component: MainCustomerCartComponent },
+      { title: 'Order Places', path: 'order-success', component: MainCustomerOrderSuccessComponent },
       { title: 'Food Details', path: 'foods/:id', component: MainCustomerFoodDetailsComponent },
       { path: '', redirectTo: '/main/home', pathMatch: 'full' },
     ]

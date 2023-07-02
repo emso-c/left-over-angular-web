@@ -88,6 +88,19 @@ interface CreditCard {
   placeholder: string;
 }
 
+interface Order {
+  _id: string;
+  cardId: string;
+  commentId: string;
+  commented: boolean;
+  createdAt: string;
+  createdBy: string;
+  foodAmount: number; // ??
+  foodsId: string[];
+  restaurantId: string;
+  totalAmount: number;
+}
+
 export type {
   CustomerDetails,
   RestaurantDetails,
@@ -98,5 +111,6 @@ export type {
   Campaign,
   CartItem,
   Cart,
-  CreditCard
+  CreditCard,
+  Order
 };

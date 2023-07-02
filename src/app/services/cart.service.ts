@@ -77,4 +77,11 @@ export class CartService {
       this.cart.items.splice(index, 1);
     }
   }
+
+  clearCart() {
+    this.cart = {
+      items: []
+    };
+    this.updateLocalStorage();
+  }
 }
