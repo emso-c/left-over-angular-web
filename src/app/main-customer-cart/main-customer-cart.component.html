@@ -1,24 +1,4 @@
 <div *ngIf="!cartService.isEmpty">
-  <!-- <div *ngFor="let item of cartService.cart.items">
-    {{item.food.title}}
-    <button class="btn btn-primary" (click)="cartService.increaseQuantity(item.food)">
-      <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
-    </button>
-    <span>{{cartService.getQuantity(item.food)}}</span>
-    <button class="btn btn-danger" (click)="cartService.decreaseQuantity(item.food)">
-      <mat-icon mat-list-icon>remove_shopping_cart</mat-icon>
-    </button>
-  </div>
-  
-  <div class="">
-    <span class="d-block">İndirimsiz Ücret <span class="text-decoration-line-through">{{cartService.totalMainPrice}}</span></span>
-    <span class="d-block">İndirimli Ücret <span class="">{{cartService.totalSalesPrice}}</span></span>
-    <span class="d-block"><span class="">{{cartService.totalMainPrice-cartService.totalSalesPrice}}TL kar!</span></span>
-  </div>
-  <button mat-button (click)="confirmShoppingCart()">
-    Sepeti Onayla
-  </button> -->
-
   <mat-stepper [linear]="true" #stepper>
     
     <!-- STEP 1: SEPETİ DÜZENLE  -->

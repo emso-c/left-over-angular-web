@@ -54,7 +54,7 @@ import { MainCustomerSearchComponent } from './main-customer-search/main-custome
 import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
 import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
-import { MainCustomerCardComponent } from './main-customer-card/main-customer-card.component';
+import { MainCustomerCartComponent } from './main-customer-cart/main-customer-cart.component';
 import { MainCustomerProfileComponent } from './main-customer-profile/main-customer-profile.component';
 import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
 import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
@@ -82,7 +82,7 @@ import { MainCustomerProfileUpdateComponent } from './main-customer-profile-upda
     MainCustomerRestaurantDetailsComponent,
     MainCustomerFoodDetailsComponent,
     MainCustomerSearchComponent,
-    MainCustomerCardComponent,
+    MainCustomerCartComponent,
     MainCustomerProfileComponent,
     MainCustomerFavDishComponent,
     MainCustomerFavRestaurantComponent,

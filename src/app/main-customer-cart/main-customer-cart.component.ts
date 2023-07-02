@@ -3,11 +3,11 @@ import { CartService } from '../services/cart.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-main-customer-card',
-  templateUrl: './main-customer-card.component.html',
-  styleUrls: ['./main-customer-card.component.css']
+  selector: 'app-main-customer-cart',
+  templateUrl: './main-customer-cart.component.html',
+  styleUrls: ['./main-customer-cart.component.css']
 })
-export class MainCustomerCardComponent {
+export class MainCustomerCartComponent {
   cartService: CartService = inject(CartService)
   _formBuilder: FormBuilder = inject(FormBuilder)
 
