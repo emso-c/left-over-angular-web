@@ -4,7 +4,7 @@ import { CategoryService } from '../services/category.service';
 import { FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import { Food } from '../shared/models';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-customer-search',
@@ -15,6 +15,7 @@ export class MainCustomerSearchComponent {
   foodService: FoodService = inject(FoodService)
   categoryService: CategoryService = inject(CategoryService)
   router: Router = inject(Router)
+  route: ActivatedRoute = inject(ActivatedRoute);
 
   minPrice: number | null = null;
   maxPrice: number | null = null;
@@ -30,7 +31,6 @@ export class MainCustomerSearchComponent {
   }
 
 
-  // route: ActivatedRoute = inject(ActivatedRoute);
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -38,23 +38,30 @@ export class MainCustomerSearchComponent {
       map(value => this._filter(value || '')),
     );
 
-    //this.route.params.subscribe(params => {
-      const retries = 10;
-      let counter = 0;
-      const interval = 100;
-      const intervalId = setInterval(() => {
-        if (this.foodService.loaded && this.categoryService.loaded) {
-          this.options = this.foodService.foods.map(food => food.title);
-          clearInterval(intervalId);
-        }
-        else {
-          counter++;
-        }
-        if (counter === retries) {
-          clearInterval(intervalId);
-        }
-      }, interval);
-    //});
+    const retries = 10;
+    let counter = 0;
+    const interval = 100;
+    const intervalId = setInterval(() => {
+      if (this.foodService.loaded && this.categoryService.loaded) {
+        this.options = this.foodService.foods.map(food => food.title);
+
+        // get category query param
+        this.route.queryParams.subscribe(params => {
+          const category = params['category'];
+          if (category && this.categoryService.categories.find(c => c.key === category)) {
+            this.selectedCategory = category;
+          }
+        });
+
+        clearInterval(intervalId);
+      }
+      else {
+        counter++;
+      }
+      if (counter === retries) {
+        clearInterval(intervalId);
+      }
+    }, interval);
   }
 
   inPriceRange(price: number): boolean {

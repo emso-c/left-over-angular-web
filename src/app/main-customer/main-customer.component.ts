@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CampaignService } from '../services/campaign.service';
 import { Category } from '../shared/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-customer',
@@ -11,6 +12,7 @@ import { Category } from '../shared/models';
 export class MainCustomerComponent {
   categoryService: CategoryService = inject(CategoryService);
   campaignService: CampaignService = inject(CampaignService);
+  router: Router = inject(Router);
   responsiveOptions: any[] | undefined;
 
   ngOnInit() {
@@ -46,5 +48,9 @@ export class MainCustomerComponent {
             numScroll: 1
         }
     ];
+  }
+
+  handleCategoryClick(categoryKey: Category) {
+    this.router.navigate(['/main/search'], { queryParams: { category: categoryKey } });
   }
 }

@@ -13,7 +13,7 @@
       <p>Kategoriler</p>
     </ng-template>
     <ng-template let-category pTemplate="item">
-      <div class="category-item">
+      <div class="category-item" (click)="handleCategoryClick(category.key)">
         <div class="category-item-content">
           <img src={{category.img}} width="50" height="50" [alt]="category.label" class="category-image" />
           <h4 class="mb-1">{{ category.label }}</h4>
