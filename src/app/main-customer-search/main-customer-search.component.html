@@ -3,7 +3,9 @@
   <input type="text"
           matInput
           [formControl]="myControl"
-          [matAutocomplete]="auto">
+          [matAutocomplete]="auto"
+          (input)="filterFoods()"
+          (ngModelChange)="filterFoods()">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
       {{option}}
@@ -12,11 +14,11 @@
 </mat-form-field>
 <mat-form-field>
   <mat-label>Min Fiyat</mat-label>
-  <input matInput type="number" [(ngModel)]="minPrice" name="minPrice" placeholder="Min Fiyat">
+  <input (input)="filterFoods()" matInput type="number" [(ngModel)]="minPrice" name="minPrice" placeholder="Min Fiyat">
 </mat-form-field>
 <mat-form-field>
   <mat-label>Max Fiyat</mat-label>
-  <input matInput type="number" [(ngModel)]="maxPrice" name="maxPrice" placeholder="Max Fiyat">
+  <input (input)="filterFoods()" matInput type="number" [(ngModel)]="maxPrice" name="maxPrice" placeholder="Max Fiyat">
 </mat-form-field>
 <mat-form-field [style.width.px]=300 appearance="outline">
   <mat-label>Kategori</mat-label>
@@ -42,15 +44,15 @@
 
 
 <div *ngIf="foodService.loaded">
-  <div *ngFor='let food of foodService.foods'>
-    <div class="food-card" *ngIf="(selectedCategory && food.category===selectedCategory) || !selectedCategory">
-      <div *ngIf="inPriceRange(food.sales_price)">
-          <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
-          <h3>{{food.title}}</h3>
-          <p>{{food.description}}</p>
-          <p class="text-decoration-line-through">{{food.main_price}}</p>
-          <p>{{food.sales_price}}</p>
-      </div>
-    </div>
+  <div *ngFor='let food of filteredFoods'>
+    <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
+    <h3>{{food.title}}</h3>
+    <p>{{food.description}}</p>
+    <p class="text-decoration-line-through">{{food.main_price}}</p>
+    <p>{{food.sales_price}}</p>
+    <p>%{{getDiscount(food)}} indirim</p>
+  </div>
+  <div *ngIf="filteredFoods.length == 0">
+    <h3>Aradığınız kriterlere uygun ürün bulunamadı.</h3>
   </div>
 </div>

@@ -20,6 +20,7 @@ export class MainCustomerSearchComponent {
   minPrice: number | null = null;
   maxPrice: number | null = null;
   selectedCategory: string = '';
+  filteredFoods: Food[] = [];
 
   myControl = new FormControl('');
   options: string[] = [];
@@ -29,7 +30,6 @@ export class MainCustomerSearchComponent {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-
 
 
   ngOnInit() {
@@ -44,12 +44,14 @@ export class MainCustomerSearchComponent {
     const intervalId = setInterval(() => {
       if (this.foodService.loaded && this.categoryService.loaded) {
         this.options = this.foodService.foods.map(food => food.title);
+        this.filteredFoods = this.foodService.foods;
 
         // get category query param
         this.route.queryParams.subscribe(params => {
           const category = params['category'];
           if (category && this.categoryService.categories.find(c => c.key === category)) {
             this.selectedCategory = category;
+            this.filterFoods();
           }
         });
 
@@ -83,9 +85,20 @@ export class MainCustomerSearchComponent {
 
   onCategoryChange(categoryKey: string) {
     this.selectedCategory = categoryKey;
+    this.filterFoods();
   }
 
   handleFoodClick(foodId: string) {
     this.router.navigate(['main/foods', foodId]);
+  }
+
+  filterFoods() {
+    this.filteredFoods = this.foodService.foods.filter(food => {
+      return (
+        ((this.selectedCategory && food.category===this.selectedCategory) || !this.selectedCategory) &&
+        this.inPriceRange(food.sales_price) &&
+        (this.myControl.value === '' || food.title.toLocaleLowerCase('tr-TR').includes(this.myControl.value!.toLocaleLowerCase('tr-TR')))
+      );
+    });
   }
 }
