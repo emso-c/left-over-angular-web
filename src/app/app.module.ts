@@ -46,55 +46,57 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { MainRestaurantComponent } from './main-restaurant/main-restaurant.component';
 import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
+import { MainCustomerCartComponent } from './main-customer-cart/main-customer-cart.component';
 import { RestaurantAddDishComponent } from './restaurant-add-dish/restaurant-add-dish.component';
 import { RestaurantCommentsComponent } from './restaurant-comments/restaurant-comments.component';
+import { MainCustomerOrdersComponent } from './main-customer-orders/main-customer-orders.component';
 import { RestaurantEditDishComponent } from './restaurant-edit-dish/restaurant-edit-dish.component';
 import { MainCustomerLayoutComponent } from './main-customer-layout/main-customer-layout.component';
 import { MainCustomerSearchComponent } from './main-customer-search/main-customer-search.component';
-import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
-import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
-import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
-import { MainCustomerCartComponent } from './main-customer-cart/main-customer-cart.component';
 import { MainCustomerProfileComponent } from './main-customer-profile/main-customer-profile.component';
 import { MainCustomerFavDishComponent } from './main-customer-fav-dish/main-customer-fav-dish.component';
-import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
-import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
-import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
+import { MainCustomerRestaurantsComponent } from './main-customer-restaurants/main-customer-restaurants.component';
+import { MainCustomerFoodDetailsComponent } from './main-customer-food-details/main-customer-food-details.component';
 import { MainCustomerOrderSuccessComponent } from './main-customer-order-success/main-customer-order-success.component';
-import { MainCustomerOrdersComponent } from './main-customer-orders/main-customer-orders.component';
 import { MainCustomerOrderDetailsComponent } from './main-customer-order-details/main-customer-order-details.component';
+import { MainCustomerFavRestaurantComponent } from './main-customer-fav-restaurant/main-customer-fav-restaurant.component';
+import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
+import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
+import { MainCustomerCampaignDetailsComponent } from './main-customer-campaign-details/main-customer-campaign-details.component';
+import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainComponent,
     LoginComponent,
     SignupComponent,
-    MainComponent,
-    ProfileDetailsComponent,
     ImagePickerComponent,
-    MainRestaurantComponent,
     MainCustomerComponent,
+    ProfileDetailsComponent,
+    MainRestaurantComponent,
     RestaurantEditComponent,
     RestaurantMenuComponent,
-    RestaurantCommentsComponent,
+    MainCustomerCartComponent,
     RestaurantAddDishComponent,
+    MainCustomerOrdersComponent,
+    RestaurantCommentsComponent,
     RestaurantEditDishComponent,
     MainCustomerLayoutComponent,
-    MainCustomerRestaurantsComponent,
-    MainCustomerRestaurantDetailsComponent,
-    MainCustomerFoodDetailsComponent,
     MainCustomerSearchComponent,
-    MainCustomerCartComponent,
     MainCustomerProfileComponent,
     MainCustomerFavDishComponent,
+    MainCustomerPaymentAddComponent,
+    MainCustomerRestaurantsComponent,
+    MainCustomerFoodDetailsComponent,
+    MainCustomerOrderSuccessComponent,
+    MainCustomerOrderDetailsComponent,
+    MainCustomerProfileUpdateComponent,
     MainCustomerFavRestaurantComponent,
     MainCustomerPaymentMethodsComponent,
-    MainCustomerPaymentAddComponent,
-    MainCustomerProfileUpdateComponent,
-    MainCustomerOrderSuccessComponent,
-    MainCustomerOrdersComponent,
-    MainCustomerOrderDetailsComponent,
+    MainCustomerCampaignDetailsComponent,
+    MainCustomerRestaurantDetailsComponent,
   ],
   imports: [
     BrowserModule,
