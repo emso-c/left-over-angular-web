@@ -1,5 +1,7 @@
 import {Component, inject} from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -9,4 +11,18 @@ import { UserService } from '../services/user.service';
 })
 export class MainCustomerLayoutComponent {
   userService: UserService = inject(UserService)
+  router: Router = inject(Router)
+  private afAuth: AngularFireAuth = inject(AngularFireAuth);
+
+  handleNotifClick(){
+    this.router.navigate(['/main/notifications'])
+  }
+
+  logout() {
+    this.afAuth.signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      }
+    );
+  }
 }

@@ -27,6 +27,7 @@ import { MainCustomerOrderSuccessComponent } from './main-customer-order-success
 import { MainCustomerOrdersComponent } from './main-customer-orders/main-customer-orders.component';
 import { MainCustomerOrderDetailsComponent } from './main-customer-order-details/main-customer-order-details.component';
 import { MainCustomerCampaignDetailsComponent } from './main-customer-campaign-details/main-customer-campaign-details.component';
+import { MainCustomerNotificationsComponent } from './main-customer-notifications/main-customer-notifications.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -60,6 +61,7 @@ const routes: Routes = [
           },
         ]},
       { title: 'Search', path: 'search', component: MainCustomerSearchComponent },
+      { title: 'Notifications', path: 'notifications', component: MainCustomerNotificationsComponent },
       { title: 'Campaign Details', path: 'campaign-details/:id', component: MainCustomerCampaignDetailsComponent },
       { title: 'My Cart', path: 'cart', component: MainCustomerCartComponent },
       { title: 'Order Places', path: 'order-success', component: MainCustomerOrderSuccessComponent },

@@ -65,6 +65,7 @@ import { MainCustomerProfileUpdateComponent } from './main-customer-profile-upda
 import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-methods/main-customer-payment-methods.component';
 import { MainCustomerCampaignDetailsComponent } from './main-customer-campaign-details/main-customer-campaign-details.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
+import { MainCustomerNotificationsComponent } from './main-customer-notifications/main-customer-notifications.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaura
     MainCustomerPaymentMethodsComponent,
     MainCustomerCampaignDetailsComponent,
     MainCustomerRestaurantDetailsComponent,
+    MainCustomerNotificationsComponent,
   ],
   imports: [
     BrowserModule,

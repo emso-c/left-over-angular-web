@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this as needed */
+  }
+  
+  .content {
+    text-align: center;
+  }
+  
+  .content i {
+    font-size: 142px; /* Adjust this as needed */
+    margin-bottom: 40px; /* Adjust this as needed */
+  }
+  

@@ -1,9 +1,36 @@
-<mat-toolbar color="primary" class="example-toolbar">
+<!-- <mat-toolbar color="primary">
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-	<h1 class="example-app-name text-white">Leftover</h1>
+  <div class="row flex-fill">
+    <div class="col-4 d-flex align-items-baseline justify-content-center">
+      <h1 class="me-auto">APP TITLE</h1>
+    </div>
+    <div class="col d-flex justify-content-end align-items-baseline">
+      <button class="btn btn-outline-light">Çıkış Yap</button>
+    </div>
+  </div>
 </mat-toolbar>
+ -->
+
+
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Left Over</span>
+    <span class="example-spacer"></span>
+    <button (click)="handleNotifClick()" matTooltip="Bildirimler" matTooltipPosition="below"mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button (click)="logout" matTooltip="Çıkış Yap" matTooltipPosition="below" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
+
 <mat-drawer-container class="example-container vh-100" autosize>
   <mat-drawer #drawer opened class="example-sidenav" mode="side">
     <mat-nav-list>
@@ -36,10 +63,10 @@
           <mat-icon mat-list-icon>shopping_cart</mat-icon>
         </mat-list-item>
       </a>
-      <mat-divider></mat-divider>
+      <!-- <mat-divider></mat-divider>
       <mat-list-item matTooltip="Oturumu Kapat" matTooltipPosition="after" matTooltipHideDelay="200">
         <mat-icon mat-list-icon>logout</mat-icon>
-      </mat-list-item>
+      </mat-list-item> -->
     </mat-nav-list>
   </mat-drawer>
 
