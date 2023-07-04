@@ -1,0 +1,17 @@
+<div *ngIf="!campaign" class="fullscreen-loading"></div>
+
+
+<div class="campaign-info container">
+  <div class="campaign-header">
+    <h2>{{campaign?.title}}</h2>
+    <p>{{campaign?.description}}</p>
+  </div>
+  <div class="campaign-body" *ngFor="let food of foods">
+    <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
+    <h3>{{food.title}}</h3>
+    <p>{{food.description}}</p>
+    <p class="text-decoration-line-through">{{food.main_price}}</p>
+    <p>{{food.sales_price}}</p>
+    <p>%{{getDiscount(food)}} indirim</p>
+  </div>
+</div>

@@ -28,4 +28,8 @@ export class CampaignService {
       this.loaded = true;
     });
   }
+
+  getCampaign(id: string): Campaign | undefined {
+    return this.campaigns.find((campaign) => campaign._id === id);
+  }
 }

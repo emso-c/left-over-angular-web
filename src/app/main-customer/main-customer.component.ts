@@ -50,7 +50,11 @@ export class MainCustomerComponent {
     ];
   }
 
-  handleCategoryClick(categoryKey: Category) {
+  handleCategoryClick(categoryKey: string) {
     this.router.navigate(['/main/search'], { queryParams: { category: categoryKey } });
+  }
+
+  handleCampaignClick(campaignId: string) {
+    this.router.navigate(['/main/campaign-details', campaignId]);
   }
 }

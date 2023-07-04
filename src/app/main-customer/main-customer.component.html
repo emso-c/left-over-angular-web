@@ -39,7 +39,7 @@
       <p>Kampanyalar</p>
     </ng-template>
     <ng-template let-campaign pTemplate="item">
-      <div class="campaign-item">
+      <div class="campaign-item" (click)="handleCampaignClick(campaign._id)">
         <div class="campaign-item-content">
           <img src={{campaign.img}} width="200" height="100" [alt]="campaign.label" class="campaign-image" />
           <h4 class="mb-1">{{ campaign.label }}</h4>

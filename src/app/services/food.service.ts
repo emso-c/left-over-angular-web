@@ -56,4 +56,8 @@ export class FoodService {
   getFoodById(id: string): Food | undefined {
     return this.foods.find(food => food._id === id);
   }
+
+  getFoodsByCategory(category: string): Food[] {
+    return this.foods.filter(food => food.category === category);
+  }
 }
