@@ -24,6 +24,8 @@ import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-met
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
 import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
 import { MainCustomerOrderSuccessComponent } from './main-customer-order-success/main-customer-order-success.component';
+import { MainCustomerOrdersComponent } from './main-customer-orders/main-customer-orders.component';
+import { MainCustomerOrderDetailsComponent } from './main-customer-order-details/main-customer-order-details.component';
 
 const routes: Routes = [
   { title: 'Login', path: 'login', component: LoginComponent },
@@ -47,6 +49,8 @@ const routes: Routes = [
           { title: 'Update Profile', path: 'update', component: MainCustomerProfileUpdateComponent },
           { title: 'Favorite Dishes', path: 'favorite-dishes', component: MainCustomerFavDishComponent },
           { title: 'Favorite Restaurants', path: 'favorite-restaurants', component: MainCustomerFavRestaurantComponent },
+          { title: 'Orders', path: 'orders', component: MainCustomerOrdersComponent },
+          { title: 'Order Details', path: 'orders/:id', component: MainCustomerOrderDetailsComponent},
           { title: 'Payment Methods', path: 'payment-methods', 
             children: [
               { title: 'Payment Methods', path: '', component: MainCustomerPaymentMethodsComponent },

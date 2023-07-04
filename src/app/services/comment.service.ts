@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Comment } from '../shared/models';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Comment, Food } from '../shared/models';
+import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class CommentService {
           description: comment['description'],
           user: {
             _id: comment['user']['id'],
-            fullName: comment['user']['fullName'],
+            fullname: comment['user']['fullname'],
             img: comment['user']['img'],
           }
         }
@@ -30,6 +30,11 @@ export class CommentService {
       this.comments = allComments;
       this.loaded = true;
     });
+  }
+
+  addComment(comment: Comment) {
+    this.comments.push(comment);
+    return setDoc(doc(this.firestore, 'comments', comment._id), comment);
   }
 
   getCommentByID(id: string): Comment | undefined {

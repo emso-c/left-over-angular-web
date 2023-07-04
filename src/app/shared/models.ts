@@ -56,7 +56,7 @@ interface Comment {
   description: string;
   user: {
     _id: string;
-    fullName: string;
+    fullname: string;
     img: string;
   }
 }

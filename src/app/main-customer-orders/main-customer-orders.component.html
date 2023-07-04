@@ -1,0 +1,33 @@
+<div class="container" *ngFor="let order of orderService.orders">
+  <div class="container">
+    <div *ngIf="userService.currentUser?.details?._id == order.createdBy">
+      <div class="order-card" (click)="handleOrderClick(order._id)">
+        <div class="row">
+          <div class="col-4">
+            <div class="image-container" [style.backgroundImage]="'url(' + userService.getUserByCompositeId(order.restaurantId)?.details?.img + ')'" ></div>
+          </div>
+          <div class="col">
+            <div class="container pt-3 px-3">
+              <div class="row flex-fill">
+                <p class="text-start">
+                  {{ userService.getUserByCompositeId(order.restaurantId)?.details?.title }}
+                </p>
+              </div>
+              <div class="row flex-fill">&nbsp;</div>
+              <div class="row flex-fill fw-light text-secondary">
+                <div class="col">
+                  <p>{{ order.foodsId.length }} ürün</p>
+                </div>
+                <div class="col">
+                  <p class="text-end">
+                    {{ utilsService.humanReadableDate(order.createdAt) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

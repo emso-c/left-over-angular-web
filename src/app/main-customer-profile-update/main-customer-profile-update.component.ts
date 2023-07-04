@@ -21,7 +21,6 @@ export class MainCustomerProfileUpdateComponent {
 
   ngOnInit() {
     const user = this.userService.currentUser;
-    console.log(user)
   }
 
   handleCustomerImageChange(file: File) {

@@ -22,7 +22,7 @@ export class OrderService {
           commented: order['commented'],
           createdAt: order['createdAt'],
           createdBy: order['createdBy'],
-          foodAmount: order['foodsAmount'],
+          foodAmount: order['foodAmount'],
           foodsId: order['foodsId'],
           restaurantId: order['restaurantId'],
           totalAmount: order['totalAmount'],
@@ -32,6 +32,40 @@ export class OrderService {
       this.orders = allCategories;
       this.loaded = true;
     });
+  }
+
+  getOrderById(id: string): Order | undefined {
+    return this.orders.find((order) => order._id === id);
+  }
+
+  getQuantity( orderId: string, foodId: string): number {
+    const order = this.getOrderById(orderId);
+    if(!order){
+      return -1;
+    }
+    const food = order?.foodsId.find((id) => id === foodId);
+    if (!food) {
+      return -1;
+    }
+
+    return order.foodsId.filter((id) => id === foodId).length;
+  }
+
+  /* updateOrder(uid: string, newOrder: Order) {
+    const orderIndex = this.orders.findIndex(order => order._id === uid);
+    this.orders[orderIndex] = newOrder;
+    return setDoc(doc(this.firestore, 'orders', newOrder._id), newOrder, { merge: true });
+  } */
+
+  addComment(orderId: string, commentId: string) {
+    const order = this.getOrderById(orderId);
+    if (!order) {
+      return Promise.reject('Order not found');
+    }
+
+    order.commented = true;
+    order.commentId = commentId;
+    return setDoc(doc(this.firestore, 'orders', order!._id), order, { merge: true });
   }
 
   placeOrder(order: Order): Promise<void> {

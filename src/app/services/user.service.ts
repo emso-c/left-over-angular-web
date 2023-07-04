@@ -83,6 +83,19 @@ export class UserService {
     return setDoc(userRef, details, { merge: true });
   }
 
+  addCommentToRestaurant(restaurantId: string, comment: string) {
+    const restaurant = this.getUserByID(restaurantId);
+    if (!restaurant) {
+      return Promise.reject({
+        message: 'Restoran bulunamadı.',
+        code: 'restaurant-not-found'
+      });
+    }
+    restaurant.details.comments.push(comment);
+    const userRef = doc(this.firestore, 'users', restaurantId);
+    return setDoc(userRef, restaurant.details, { merge: true });
+  }
+
   addFavoriteRestaurant(restaurantCompositeId: string){
     if (this.currentUser!.details!.favoriteRestaurants.includes(restaurantCompositeId)) {
       return new Promise((resolve, reject) => {
@@ -189,12 +202,12 @@ export class UserService {
         createdAt: userProfile['createdAt'],
         description: userProfile['description'],
         title: userProfile['title'],
-        img: 'https://previews.123rf.com/images/bestvectorstock/bestvectorstock1808/bestvectorstock180809378/111743862-restaurant-icon-vector-isolated-on-white-background-restaurant-transparent-sign-line-or-linear.jpg' ?? userProfile['img'],
+        img: userProfile['img'],
         comments: userProfile['comments'] ?? [],
         foods: userProfile['foods'] ?? [],
       }
     } else {
-      throw new Error('invalid user type');
+      throw new Error('invalid user type:'+ userProfile['type']);
     }
     const user: User = {
       uid: uid,
@@ -205,7 +218,6 @@ export class UserService {
   }
 
   getRestaurantByFoodId(foodId: string): User | undefined {
-    console.log()
     return this.users.find(user => user.details?.foods?.find((food: string) => food === foodId));
   }
 }

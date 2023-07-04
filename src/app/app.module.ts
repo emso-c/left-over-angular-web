@@ -62,6 +62,8 @@ import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-met
 import { MainCustomerPaymentAddComponent } from './main-customer-payment-add/main-customer-payment-add.component';
 import { MainCustomerProfileUpdateComponent } from './main-customer-profile-update/main-customer-profile-update.component';
 import { MainCustomerOrderSuccessComponent } from './main-customer-order-success/main-customer-order-success.component';
+import { MainCustomerOrdersComponent } from './main-customer-orders/main-customer-orders.component';
+import { MainCustomerOrderDetailsComponent } from './main-customer-order-details/main-customer-order-details.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { MainCustomerOrderSuccessComponent } from './main-customer-order-success
     MainCustomerPaymentAddComponent,
     MainCustomerProfileUpdateComponent,
     MainCustomerOrderSuccessComponent,
+    MainCustomerOrdersComponent,
+    MainCustomerOrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

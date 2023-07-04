@@ -62,7 +62,6 @@ export class MainCustomerPaymentAddComponent {
     const intervalId = setInterval(() => {
       if (this.userService.loaded) {
         this.creditCard.createdBy = this.userService.currentUser?.details?._id;
-        console.log(this.creditCard)
         clearInterval(intervalId);
       }
       if (counter >= 10) {

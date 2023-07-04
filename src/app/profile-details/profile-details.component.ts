@@ -65,7 +65,6 @@ export class ProfileDetailsComponent {
               orders: [],
               createdAt: this.utilsService.getCurrentDate()
             }
-            console.log(data);
             this.userService.updateCurrentUserDetails(data)!
               .then(() => {
                   this.isSubmitting = false;

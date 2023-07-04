@@ -22,7 +22,6 @@ export class RestaurantMenuComponent {
     const intervalId = setInterval(() => {
       if (this.userService.currentUser && this.foodService.foods) {
         let foods: Food[] = [];
-        console.log(this.userService.currentUser);
         this.userService.currentUser.details?.foods.forEach((foodId: string) => {
           const food = this.foodService.foods?.find(food => food._id === foodId);
           if (food) {
