@@ -14,21 +14,19 @@
  -->
 
 
-<p>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Left Over</span>
-    <span class="example-spacer"></span>
-    <button (click)="handleNotifClick()" matTooltip="Bildirimler" matTooltipPosition="below"mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>notifications</mat-icon>
-    </button>
-    <button (click)="logout" matTooltip="Çıkış Yap" matTooltipPosition="below" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </mat-toolbar>
-</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Left Over</span>
+  <span class="example-spacer"></span>
+  <button (click)="handleNotifClick()" matTooltip="Bildirimler" matTooltipPosition="below"mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button (click)="handleLogout()" matTooltip="Çıkış Yap" matTooltipPosition="below" mat-icon-button>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
 
 
 <mat-drawer-container class="example-container vh-100" autosize>
@@ -71,6 +69,10 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <router-outlet></router-outlet>
+    <router-outlet>
+      <button mat-icon-button (click)="handleBackClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </router-outlet>
   </div>
 </mat-drawer-container>

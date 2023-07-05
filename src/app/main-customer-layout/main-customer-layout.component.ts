@@ -18,11 +18,15 @@ export class MainCustomerLayoutComponent {
     this.router.navigate(['/main/notifications'])
   }
 
-  logout() {
+  handleLogout() {
     this.afAuth.signOut()
       .then(() => {
         this.router.navigate(['/login']);
       }
     );
+  }
+
+  handleBackClick(){
+    window.history.back();
   }
 }

@@ -43,7 +43,6 @@ export class MainCustomerCartComponent {
   async handleThirdForm(){
     const thirdCtrl = this.thirdFormGroup.get('thirdCtrl') as FormControl;
     if (this.confirmed){
-      alert('Siparişiniz başarıyla alındı.')
       this.router.navigate(['main/order-success']);
       return;
     }
