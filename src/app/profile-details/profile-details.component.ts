@@ -19,6 +19,8 @@ export class ProfileDetailsComponent {
   isSubmitting = false;
   
   changePage(page: string) {
+    this.resetCustomerForm();
+    this.resetRestaurantForm();
     this.currentPage = page;
   }
 
@@ -43,7 +45,9 @@ export class ProfileDetailsComponent {
     this.customerFormData.email = email!;
 
     if (!this.imgFile) {
-      alert('Please select an image');
+      setTimeout(() => {
+        alert('Lütfen bir fotoğraf seçiniz.');
+      }, 100);
       this.isSubmitting = false;
       return;
     }
@@ -109,7 +113,9 @@ export class ProfileDetailsComponent {
     const description = this.restaurantFormData.description;
 
     if (!this.imgFile) {
-      alert('Please select an image');
+      setTimeout(() => {
+        alert('Lütfen bir fotoğraf seçiniz.');
+      }, 100);
       this.isSubmitting = false;
       return;
     }
