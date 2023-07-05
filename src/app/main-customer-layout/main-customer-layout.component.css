@@ -1,3 +1,18 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+
+mat-drawer a {
+    background-color: white;
+    transition: 0.3s;
+}
+
+mat-drawer a:hover {
+    background-color: #eee;
+    transition: 0.3s;
+}
+
+.active-nav-link {
+  color: rgb(244, 122, 0) !important;
+  transition: 0.3s;
+}

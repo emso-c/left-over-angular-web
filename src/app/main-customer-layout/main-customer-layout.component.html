@@ -1,20 +1,4 @@
-<!-- <mat-toolbar color="primary">
-  <button mat-icon-button (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div class="row flex-fill">
-    <div class="col-4 d-flex align-items-baseline justify-content-center">
-      <h1 class="me-auto">APP TITLE</h1>
-    </div>
-    <div class="col d-flex justify-content-end align-items-baseline">
-      <button class="btn btn-outline-light">Çıkış Yap</button>
-    </div>
-  </div>
-</mat-toolbar>
- -->
-
-
-<mat-toolbar color="primary">
+<mat-toolbar class="bg-dark fs-2 text-white shadow">
   <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
@@ -23,49 +7,40 @@
   <button (click)="handleNotifClick()" matTooltip="Bildirimler" matTooltipPosition="below"mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>notifications</mat-icon>
   </button>
-  <button (click)="handleLogout()" matTooltip="Çıkış Yap" matTooltipPosition="below" mat-icon-button>
+  <button class="text-danger" (click)="handleLogout()" matTooltip="Çıkış Yap" matTooltipPosition="below" mat-icon-button>
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 
-
 <mat-drawer-container class="example-container vh-100" autosize>
   <mat-drawer #drawer opened class="example-sidenav" mode="side">
-    <mat-nav-list>
-      <a routerLink="profile"> 
-        <mat-list-item matTooltip="Profil" matTooltipPosition="after" matTooltipHideDelay="200">
-          <img src={{userService.currentUser?.details?.img}} width="30" height="30">
-        </mat-list-item>
+    <mat-nav-list class="p-0 m-0">
+      <a routerLink="profile" routerLinkActive="active-nav-link" class="text-decoration-none text-black p-3 m-0 d-flex justify-content-start align-items-center fs-5"> 
+        <img src={{userService.currentUser?.details?.img}} class="rounded-circle" width="40" height="40" />
+        <span>&nbsp;&nbsp;Profil</span>
       </a>
       <mat-divider></mat-divider>
-      <a routerLink="home"> 
-        <mat-list-item matTooltip="Ana Sayfa" matTooltipPosition="after" matTooltipHideDelay="200">
-          <mat-icon mat-list-icon>home</mat-icon>
-        </mat-list-item>
+      <a routerLink="home" routerLinkActive="active-nav-link" class="text-decoration-none text-black p-3 m-0 d-flex justify-content-start align-items-center fs-5"> 
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span>&nbsp;&nbsp;Anasayfa</span>
       </a>
       <mat-divider></mat-divider>
-      <a routerLink="restaurants"> 
-        <mat-list-item matTooltip="Restoranlar" matTooltipPosition="after" matTooltipHideDelay="200">
-          <mat-icon mat-list-icon>restaurant_menu</mat-icon>
-        </mat-list-item>
+      <a routerLink="restaurants" routerLinkActive="active-nav-link" class="text-decoration-none text-black p-3 m-0 d-flex justify-content-start align-items-center fs-5"> 
+        <mat-icon mat-list-icon>restaurant_menu</mat-icon>
+        <span>&nbsp;&nbsp;Restoranlar</span>
       </a>
       <mat-divider></mat-divider>
-      <a routerLink="search"> 
-        <mat-list-item matTooltip="Arama" matTooltipPosition="after" matTooltipHideDelay="200">
-          <mat-icon mat-list-icon>search</mat-icon>
-        </mat-list-item>
+      <a routerLink="search" routerLinkActive="active-nav-link" class="text-decoration-none text-black p-3 m-0 d-flex justify-content-start align-items-center fs-5"> 
+        <mat-icon mat-list-icon>search</mat-icon>
+        <span>&nbsp;&nbsp;Arama</span>
       </a>
       <mat-divider></mat-divider>
-      <a routerLink="cart"> 
-        <mat-list-item matTooltip="Sepetim" matTooltipPosition="after" matTooltipHideDelay="200">
-          <mat-icon mat-list-icon>shopping_cart</mat-icon>
-        </mat-list-item>
+      <a routerLink="cart" routerLinkActive="active-nav-link" class="text-decoration-none text-black p-3 m-0 d-flex justify-content-start align-items-center fs-5"> 
+        <mat-icon mat-list-icon>shopping_cart</mat-icon>
+        <span>&nbsp;&nbsp;Sepetim</span>
       </a>
-      <!-- <mat-divider></mat-divider>
-      <mat-list-item matTooltip="Oturumu Kapat" matTooltipPosition="after" matTooltipHideDelay="200">
-        <mat-icon mat-list-icon>logout</mat-icon>
-      </mat-list-item> -->
     </mat-nav-list>
+    <mat-divider></mat-divider>
   </mat-drawer>
 
   <div class="example-sidenav-content">

@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-main-customer-layout',
