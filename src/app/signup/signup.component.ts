@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
+import { AnimationOptions } from 'ngx-lottie';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
   email: string | undefined;
   password: string | undefined;
   isLoading: boolean = false;
+  private toast: HotToastService = inject(HotToastService);
+
+  options: AnimationOptions = {
+    path: '/assets/animations/welcome-lottie.json',
+  }
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
@@ -18,7 +26,9 @@ export class SignupComponent {
     this.isLoading = true;
     let errMsg: string = "";
     if (!this.email || !this.password) {
-      alert("email and password are required");
+      setTimeout(() => {
+        alert("Lütfen tüm alanları doldurunuz.");
+      }, 100);
       this.isLoading = false;
       return;
     }
@@ -29,23 +39,25 @@ export class SignupComponent {
       .catch((error) => {
         switch (error.code) {
           case "auth/weak-password":
-            errMsg = "The password is too weak.";
+            errMsg = "Şifre çok zayıf";
             break;
           case "auth/email-already-in-use":
-            errMsg = "The email address is already in use by another account.";
+            errMsg = "Bu email adresi zaten kullanımda.";
             break;
           case "auth/invalid-email":
-            errMsg = "The email address is badly formatted.";
+            errMsg = "Geçersiz email adresi";
             break;
           default:
-            errMsg = "Signup failed";
+            errMsg = "Bilinmeyen bir hata oluştu";
             break;
         }
       })
       .finally(() => {
         this.isLoading = false;
         if (errMsg) {
-          alert(errMsg);
+          setTimeout(() => {
+            alert(errMsg);
+          }, 100);
         }
       });
   }

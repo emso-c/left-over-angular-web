@@ -10,9 +10,6 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
-// primeng
-import { CarouselModule } from 'primeng/carousel';
-
 // material
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
@@ -40,6 +37,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { LoadingComponent } from './loading/loading.component';
 import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
@@ -66,6 +64,16 @@ import { MainCustomerPaymentMethodsComponent } from './main-customer-payment-met
 import { MainCustomerCampaignDetailsComponent } from './main-customer-campaign-details/main-customer-campaign-details.component';
 import { MainCustomerRestaurantDetailsComponent } from './main-customer-restaurant-details/main-customer-restaurant-details.component';
 import { MainCustomerNotificationsComponent } from './main-customer-notifications/main-customer-notifications.component';
+
+// other
+import { LottieModule } from 'ngx-lottie';
+import { CarouselModule } from 'primeng/carousel';
+import { HotToastModule } from '@ngneat/hot-toast';
+
+import player from 'lottie-web';
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -99,6 +107,7 @@ import { MainCustomerNotificationsComponent } from './main-customer-notification
     MainCustomerCampaignDetailsComponent,
     MainCustomerRestaurantDetailsComponent,
     MainCustomerNotificationsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,6 +132,8 @@ import { MainCustomerNotificationsComponent } from './main-customer-notification
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HotToastModule,
+    LottieModule.forRoot({ player: playerFactory }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
