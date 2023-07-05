@@ -1,16 +1,29 @@
-<h2>Login</h2>
-<form (ngSubmit)="login()">
-  <div>
-    <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="email" required>
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div class="row">
+  <div class="col" style="background: #c2fff7">
+    <div class="container" style="max-width: 450px;">
+      <div class="row d-flex align-items-center justify-content-center vh-100">
+        <form (ngSubmit)="login()" class="form">
+          <p class="text-center lead fw-bolder" style="margin-bottom: 50px; font-size: 36px">LEFT OVER</p>
+          <h2>Giriş Yap</h2>
+          <div class="form-group my-3">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group my-3">
+            <label>Şifre</label>
+            <input type="password" [(ngModel)]="password" name="password" class="form-control" required>
+          </div>
+          <div class="form-group my-3">
+            <button class="btn btn-lg btn-dark form-control mx-0" type="submit" [disabled]="isLoading">Giriş Yap</button>
+          </div>
+          <span>Hesabın yok mu? <a href="/signup" class="text-decoration-none fw-bold text-black">Hemen bir tane oluştur.</a></span>
+        </form>
+      </div>
+    </div>
   </div>
-  <div>
-    <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="password" required>
+  <div class="col">
+    <ng-lottie [options]="options"></ng-lottie>
   </div>
-  <button type="submit" [disabled]="isLoading">Login</button>
-  <a href="/signup">Sign Up</a>
-  <div *ngIf="isLoading">
-    <div class="fullscreen-loading"></div>
-  </div>
-</form>
+</div>

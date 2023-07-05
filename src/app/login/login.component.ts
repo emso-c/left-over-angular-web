@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,10 @@ export class LoginComponent {
   private afAuth = inject(AngularFireAuth);
   private router = inject(Router);
 
+  options: AnimationOptions = {
+    path: '/assets/animations/welcome-lottie.json',
+  }
+
   login() {
     this.isLoading = true;
     this.afAuth.signInWithEmailAndPassword(this.email!, this.password!)
@@ -23,16 +28,24 @@ export class LoginComponent {
       .catch((error) => {
         switch (error.code) {
           case "auth/missing-email":
-            alert("login failed, invalid email");
+            setTimeout(() => {
+              alert("Giriş başarısız, email adresi eksik")
+            }, 100);
             break;
           case "auth/user-not-found":
-            alert("login failed, user not found");
+            setTimeout(() => {
+              alert("Giriş başarısız, kullanıcı bulunamadı")
+            }, 100);
             break;
           case "auth/wrong-password":
-            alert("login failed, wrong password");
+            setTimeout(() => {
+              alert("Giriş başarısız, yanlış şifre")
+            }, 100);
             break;
           default:
-            alert("login failed, error: " + error.code);
+            setTimeout(() => {
+              alert("Bilinmeyen bir hata oluştu")
+            }, 100);
             break;
         }
       })

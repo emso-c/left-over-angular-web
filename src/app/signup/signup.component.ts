@@ -13,6 +13,7 @@ import { AnimationOptions } from 'ngx-lottie';
 export class SignupComponent {
   email: string | undefined;
   password: string | undefined;
+  password_again: string | undefined;
   isLoading: boolean = false;
   private toast: HotToastService = inject(HotToastService);
 
@@ -23,6 +24,12 @@ export class SignupComponent {
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
   signup() {
+    if (this.password !== this.password_again) {
+      setTimeout(() => {
+        alert("Şifreler uyuşmuyor.");
+      }, 100);
+      return;
+    }
     this.isLoading = true;
     let errMsg: string = "";
     if (!this.email || !this.password) {
