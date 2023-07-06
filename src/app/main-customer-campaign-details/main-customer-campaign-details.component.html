@@ -1,17 +1,29 @@
-<div *ngIf="!campaign" class="fullscreen-loading"></div>
+<app-loading *ngIf="!campaign"></app-loading>
 
-
-<div class="campaign-info container">
-  <div class="campaign-header">
-    <h2>{{campaign?.title}}</h2>
-    <p>{{campaign?.description}}</p>
-  </div>
-  <div class="campaign-body" *ngFor="let food of foods">
-    <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
-    <h3>{{food.title}}</h3>
-    <p>{{food.description}}</p>
-    <p class="text-decoration-line-through">{{food.main_price}}</p>
-    <p>{{food.sales_price}}</p>
-    <p>%{{getDiscount(food)}} indirim</p>
+<div style="background-color: rgba(240, 240, 240, 1)">
+  <div class="container p-4" style="max-width: 800px;">
+    <div class="row bg-white rounded d-flex justify-content-center align-items-center">
+      <div class="col-12 p-3">
+        <h2>{{campaign?.title}}</h2>
+        <p>{{campaign?.description}}</p>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div *ngFor="let food of foods" class="campaign-card shadow-sm flex-fill">
+        <div class="container d-flex flex-column h-100" (click)="handleFoodClick(food._id)">
+          <div class="row-7 flex-fill">
+            <div class="col menu-img" style="background-image: url({{food.img}});">
+            <span>%{{getDiscount(food)}}</span>
+          </div>
+        </div>
+        <div class="row flex-fill">
+          <div class="col d-flex flex-column p-3">
+            <p class="fs-6 fw-bolder">{{food.title}}</p>
+            <p class="text-black-50 fw-light">{{food.description}}</p>
+            <p class="fs-6 fw-bolder" style="color: rgb(236, 106, 0)">{{food.sales_price}}₺</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
