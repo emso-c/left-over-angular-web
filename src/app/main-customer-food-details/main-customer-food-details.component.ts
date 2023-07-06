@@ -43,7 +43,19 @@ export class MainCustomerFoodDetailsComponent {
     });
   }
 
-  handleFavorite(foodId: string) {
+  isFavorite(foodId: string): boolean {
+    return this.userService.currentUser?.details?.favoriteDishes?.includes(foodId)
+  }
+
+  getDiscount(food: Food){
+    const sales_price = food.sales_price;
+    const main_price = food.main_price;
+    const discount = (main_price - sales_price) / main_price * 100;
+    return Math.round(discount);
+  }
+
+  handleFavorite(event: any, foodId: string) {
+    event.stopPropagation();
     if (this.userService.currentUser?.details?.favoriteDishes?.includes(foodId)){
       this.userService.removeFavoriteDish(foodId)
         .then(() => {
