@@ -12,10 +12,14 @@ export class MainCustomerRestaurantsComponent {
   userService: UserService = inject(UserService)
   router: Router = inject(Router)
   
+  isFavorite(restaurantCompositeId: string): boolean {
+    return this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)
+  }
   handleRestaurantClick(restaurantCompositeId: string) {
     this.router.navigate(['/main/restaurants/' + restaurantCompositeId])
   }
-  handleFavorite(restaurantCompositeId: string) {
+  handleFavorite(event: any, restaurantCompositeId: string) {
+    event.stopPropagation();
     if (this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)){
       this.userService.removeFavoriteRestaurant(restaurantCompositeId)
         .then(() => {
