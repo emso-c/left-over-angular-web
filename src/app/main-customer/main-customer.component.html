@@ -1,27 +1,23 @@
-<div class="fullscreen-loading" *ngIf="!categoryService.loaded || !campaignService.loaded"></div>
+<app-loading *ngIf="!categoryService.loaded || !campaignService.loaded"></app-loading>
+
 
 <div *ngIf="categoryService.loaded">
   <p-carousel
   [value]="categoryService.categories"
-  [numVisible]="7"
+  [numVisible]="6"
   [numScroll]="1"
   [responsiveOptions]="responsiveOptions"
   [showIndicators]="false"
   [circular]="true"
+  [draggable]="true"
   >
     <ng-template pTemplate="header">
-      <p>Kategoriler</p>
+      <h2 class="mx-5">Kategoriler</h2>
     </ng-template>
     <ng-template let-category pTemplate="item">
-      <div class="category-item" (click)="handleCategoryClick(category.key)">
-        <div class="category-item-content">
-          <img src={{category.img}} width="50" height="50" [alt]="category.label" class="category-image" />
-          <h4 class="mb-1">{{ category.label }}</h4>
-        </div>
+      <div class="category-item" (click)="handleCategoryClick(category.key)" style="background-image: url({{category.img}});">
+        <div class="category-label">{{ category.label }}</div>
       </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <p>Footer content</p>
     </ng-template>
   </p-carousel>
 </div>
@@ -36,18 +32,11 @@
   [autoplayInterval]="5000"
   >
     <ng-template pTemplate="header">
-      <p>Kampanyalar</p>
+      <h2 class="mx-5 mt-5">Kampanyalar</h2>
     </ng-template>
     <ng-template let-campaign pTemplate="item">
-      <div class="campaign-item" (click)="handleCampaignClick(campaign._id)">
-        <div class="campaign-item-content">
-          <img src={{campaign.img}} width="200" height="100" [alt]="campaign.label" class="campaign-image" />
-          <h4 class="mb-1">{{ campaign.label }}</h4>
-        </div>
+      <div class="campaign-item img-fluid" (click)="handleCampaignClick(campaign._id)" style="background-image: url({{campaign.img}});">
       </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <p>Footer content</p>
     </ng-template>
   </p-carousel>
 </div>
