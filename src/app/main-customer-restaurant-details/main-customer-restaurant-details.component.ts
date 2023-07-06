@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { User } from '../shared/models';
+import { Food, User } from '../shared/models';
 import { CommentService } from '../services/comment.service';
 import { FoodService } from '../services/food.service';
 import { UtilsService } from '../services/utils.service';
@@ -31,7 +31,12 @@ export class MainCustomerRestaurantDetailsComponent {
     this.router.navigate([`/main/restaurants/${restaurantId}/foods/${foodId}`])
   }
 
-  handleFavorite(restaurantCompositeId: string) {
+  isFavorite(restaurantCompositeId: string): boolean {
+    return this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)
+  }
+
+  handleFavorite(event: any, restaurantCompositeId: string) {
+    event.stopPropagation();
     if (this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)){
       this.userService.removeFavoriteRestaurant(restaurantCompositeId)
         .then(() => {
@@ -50,4 +55,11 @@ export class MainCustomerRestaurantDetailsComponent {
         })
     }
   }
+  getDiscount(food: Food){
+    const sales_price = food.sales_price;
+    const main_price = food.main_price;
+    const discount = (main_price - sales_price) / main_price * 100;
+    return discount.toFixed(0);
+  }
 }
+
