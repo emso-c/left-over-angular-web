@@ -1,12 +1,10 @@
-<div *ngIf="fetchingData">
-  <div class="fullscreen-loading"></div>
-</div>
+<app-loading *ngIf="fetchingData"></app-loading>
 
-<a routerLink="/main" class="btn btn-primary btn-lg rounded-circle">
+<a routerLink="/main" class="btn btn-outline-dark m-3 btn-lg rounded-circle">
   <i class="fa fa-arrow-left"></i>
 </a>
 
-<div class="pt-5" *ngIf="!fetchingData">
+<!-- div class="pt-5" *ngIf="!fetchingData">
   <ul *ngFor="let food of userFoods">
     <li>
       <div>
@@ -26,4 +24,39 @@
       </div>
     </li>
   </ul>
+</div> -->
+
+
+<div class="container">
+  <div class="row d-flex p-3 m-0 mb-0">
+    <ng-container *ngFor="let food of userFoods">
+      <div class="campaign-card shadow-sm flex-fill">
+        <div class="container d-flex flex-column h-100">
+          <div class="row-7 flex-fill">
+            <div class="col menu-img bg-secondary" style="background-image: url({{food.img}});">
+            </div>
+          </div>
+          <div class="row flex-fill text-center">
+            <div class="col d-flex flex-column p-3">
+              <p class="fs-6 fw-bolder">{{food.title}}</p>
+              <p class="text-black-50 fw-light">{{food.description}}</p>
+              <p class="fs-6 fw-bolder" style="color: rgb(236, 106, 0)">{{food.sales_price}}₺</p>
+            </div>
+          </div>
+          <div class="row flex-fill">
+              <div class="d-flex justify-content-between align-items-center">
+                <a class="btn w-100 btn-outline-primary rounded-pill" href="restaurant-edit-dish/{{food._id}}">
+                  <i class="fas fa-edit"></i>
+                  Düzenle
+                </a>
+                <button class="btn w-100 btn-outline-danger rounded-pill" (click)="deleteFood(food._id)">
+                  <i class="fas fa-trash"></i>
+                  Sil
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
