@@ -1,41 +1,54 @@
-<div *ngIf="!userService.loaded" class="fullscreen-loading"></div>
-
-<div *ngIf="userService.loaded">
-  <div class="container">
+<app-loading *ngIf="!userService.loaded"></app-loading>
+ <div class="container">
+  <div class="row text-center">
     <div class="row">
-      <div class="col-md-12">
-        <div class="profile-img">
-          <img src={{userService.currentUser?.details?.img}} width="200" height="200">
-        </div>
-        <div class="profile-head">
-          <h2><b>
-            {{userService.currentUser?.details?.name}} {{userService.currentUser?.details?.surname}}
-          </b></h2>
-          <h3>
-            {{userService.currentUser?.details?.email}}
-          </h3>
-        </div>
+      <div class=" d-flex justify-content-center align-items-center">
+        <img src={{userService.currentUser?.details?.img}} class="rounded-circle" width="300" height="300">
+      </div>
+    </div>
+    <div class="row">
+      <div class="profile-head">
+        <h2><b>
+          {{userService.currentUser?.details?.name}} {{userService.currentUser?.details?.surname}}
+        </b></h2>
+        <h3>
+          {{userService.currentUser?.details?.email}}
+        </h3>
       </div>
     </div>
   </div>
+  <hr>
+  <div class="row m-auto" style="max-width: 400px">
+    <a routerLink="update" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/edit-customer.png" width="30" height="30" class="me-2">
+      Profil Bilgilerimi Güncelle
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+    <a routerLink="favorite-restaurants" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/favorite-restaurants.png" width="30" height="30" class="me-2">
+      Favori Restoranlarım
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+    <a routerLink="favorite-dishes" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/favorites-foods.png" width="30" height="30" class="me-2">
+      Favori Yiyeceklerim
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+    <a routerLink="payment-methods" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/credit-card.png" width="30" height="30" class="me-2">
+      Ödeme Yöntemlerim
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+    <a routerLink="orders" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/order.png" width="30" height="30" class="me-2">
+      Siparişlerim
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+  </div>
+  
 </div>
-
-<a routerLink="update">
-  Profil Bilgilerimi Güncelle
-</a>
-<br>
-<a routerLink="favorite-dishes">
-  Favori Yiyeceklerim
-</a>
-<br>
-<a routerLink="favorite-restaurants">
-  Favori Restoranlarım
-</a>
-<br>
-<a routerLink="payment-methods">
-  Ödeme Yöntemlerim
-</a>
-<br>
-<a routerLink="orders">
-  Siparişlerim
-</a>
