@@ -1,7 +1,8 @@
 
 
 <app-loading *ngIf="!userService.loaded"></app-loading>
- <div class="container p-5 m-5">
+
+<div class="container p-5 m-5">
   <div class="row text-center">
     <div class="row">
       <div class=" d-flex justify-content-center align-items-center">
@@ -39,6 +40,11 @@
     <a href="/restaurant-add-dish" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
       <img src="assets/images/add-food.png" width="30" height="30" class="me-2">
       Yemek Ekle
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+    </a>
+    <a (click)="handleLogout()" class="btn btn-outline-danger m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/logout.png" width="30" height="30" class="me-2">
+      Çıkış Yap
       <span style="position: absolute; top: 25%; left: 95%;">></span>
     </a>
   </div>
