@@ -1,58 +1,90 @@
-<mat-form-field>
-  <mat-label>Aramak için tıkla...</mat-label>
-  <input type="text"
-          matInput
-          [formControl]="myControl"
-          [matAutocomplete]="auto"
-          (input)="filterFoods()"
-          (ngModelChange)="filterFoods()">
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-      {{option}}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Min Fiyat</mat-label>
-  <input (input)="filterFoods()" matInput type="number" [(ngModel)]="minPrice" name="minPrice" placeholder="Min Fiyat">
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Max Fiyat</mat-label>
-  <input (input)="filterFoods()" matInput type="number" [(ngModel)]="maxPrice" name="maxPrice" placeholder="Max Fiyat">
-</mat-form-field>
-<mat-form-field [style.width.px]=300 appearance="outline">
-  <mat-label>Kategori</mat-label>
-  <mat-select
-  name="category"
-  [(ngModel)]="selectedCategory"
-  disableOptionCentering
-  [disabled]="!categoryService.categories.length"
-  (selectionChange)="onCategoryChange($event.value)"
-  >
-  <div class="w-100 p-2 d-flex flex-column">
-    <mat-option class="border border-2 rounded w-100 p-2 m-1" [value]="">
-      <span class="mx-2 my-auto">Hiçbiri</span>
-    </mat-option>
-    <mat-option class="border border-2 rounded w-100 p-2 m-1" *ngFor="let category of categoryService.categories" [value]="category.key">
-      <img src="{{ category.img }}" alt="category" width="50" height="50" class="rounded-2">
-      <span class="mx-2 my-auto">{{ category.label }}</span>
-      <span class="float-end"></span>
-    </mat-option>
+<div class="container" style="max-width: 900px">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100" class="w-100">
+          <mat-label>Aramak için tıkla...</mat-label>
+          <input type="text"
+                  matInput
+                  [formControl]="myControl"
+                  [matAutocomplete]="auto"
+                  (input)="filterFoods()"
+                  (ngModelChange)="filterFoods()">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
     </div>
-  </mat-select>
-</mat-form-field>
-
-
-<div *ngIf="foodService.loaded">
-  <div *ngFor='let food of filteredFoods'>
-    <img (click)="handleFoodClick(food._id)" src="{{food.img}}" alt="food image" width="200px" height="200px">
-    <h3>{{food.title}}</h3>
-    <p>{{food.description}}</p>
-    <p class="text-decoration-line-through">{{food.main_price}}</p>
-    <p>{{food.sales_price}}</p>
-    <p>%{{getDiscount(food)}} indirim</p>
   </div>
-  <div *ngIf="filteredFoods.length == 0">
-    <h3>Aradığınız kriterlere uygun ürün bulunamadı.</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Min Fiyat</mat-label>
+          <input matInput (input)="filterFoods()" type="number" [(ngModel)]="minPrice" name="minPrice" placeholder="Min Fiyat">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Max Fiyat</mat-label>
+          <input matInput (input)="filterFoods()" type="number" [(ngModel)]="maxPrice" name="maxPrice" placeholder="Max Fiyat">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100" [style.width.px]=300>
+          <mat-label>Kategori</mat-label>
+          <mat-select
+          name="category"
+          matInput
+          [(ngModel)]="selectedCategory"
+          disableOptionCentering
+          [disabled]="!categoryService.categories.length"
+          (selectionChange)="onCategoryChange($event.value)"
+          >
+          <div class="w-100 p-2 d-flex flex-column">
+            <mat-option class="border border-2 rounded w-100 p-2 m-1" [value]="">
+              <span class="mx-2 my-auto">Hiçbiri</span>
+            </mat-option>
+            <mat-option class="border border-2 rounded w-100 p-2 m-1" *ngFor="let category of categoryService.categories" [value]="category.key">
+              <img src="{{ category.img }}" alt="category" width="50" height="50" class="rounded-2">
+              <span class="mx-2 my-auto">{{ category.label }}</span>
+              <span class="float-end"></span>
+            </mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
+</div>
+
+<hr>
+
+<div class="row d-flex p-3 m-0">
+  <ng-container *ngFor="let food of filteredFoods">
+    <div class="campaign-card shadow-sm flex-fill">
+      <div class="container d-flex flex-column h-100" (click)="handleFoodClick(food._id)">
+        <div class="row-7 flex-fill">
+          <div class="col menu-img bg-secondary" style="background-image: url({{food.img}});">
+            <span>%{{getDiscount(food)}}</span>
+          </div>
+        </div>
+        <div class="row flex-fill">
+          <div class="col d-flex flex-column p-3">
+            <p class="fs-6 fw-bolder">{{food.title}}</p>
+            <p class="text-black-50 fw-light">{{food.description}}</p>
+            <p class="fs-6 fw-bolder" style="color: rgb(236, 106, 0)">{{food.sales_price}}₺</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
