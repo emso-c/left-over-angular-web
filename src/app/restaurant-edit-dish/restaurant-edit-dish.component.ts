@@ -90,7 +90,10 @@ export class RestaurantEditDishComponent {
       this.foodService.updateFood(this.dishFormData._id, updatedFood)
         .then(() => {
           this.isSubmitting = false;
-          this.router.navigate(['/main']);
+          setTimeout(() => {
+            alert('Yemek başarıyla güncellendi');
+            this.router.navigate(['/restaurant-menu']);
+          }, 100);
         })
     } else {
       // TODO: remove old image

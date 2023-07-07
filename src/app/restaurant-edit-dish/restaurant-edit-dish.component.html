@@ -1,19 +1,19 @@
-<div *ngIf="isSubmitting">
-  <div class="fullscreen-loading"></div>
-</div>
+<app-loading *ngIf="isSubmitting"></app-loading>
 
-<a routerLink="/main" class="btn btn-primary btn-lg rounded-circle">
+<a routerLink="/main" class="btn btn-outline-dark m-3 btn-lg rounded-circle">
   <i class="fa fa-arrow-left"></i>
 </a>
 
-<div class="container p-1">
-  <h2 class="pt-5">Yemeği Düzenle</h2>
+ <div class="container m-auto border border-2 rounded px-4" style="width: 355px">
+  <h2 class="pt-3 text-center">Yemeği Düzenle</h2>
   <form (ngSubmit)="submitDishForm()" #form="ngForm">
-    <div class="form-group">
-      <app-image-picker [imageUrl]="dishFormData.img" (newImgEvent)="handleDishImageChange($event)"></app-image-picker>
+    <div class="form-group m-auto">
+      <div style="width: 170px; height: 170px; margin:auto">
+        <app-image-picker [imageUrl]="dishFormData.img" (newImgEvent)="handleDishImageChange($event)"></app-image-picker>
+      </div>
     </div>
     <div class="form-group">
-      <mat-form-field [style.width.px]=300 appearance="outline">
+      <mat-form-field [style.min-width.px]=300 appearance="outline">
         <mat-label>Yemeğin Adı</mat-label>
         <input matInput type="text" class="form-control" id="title" name="title" [(ngModel)]="dishFormData.title" required>
       </mat-form-field>
@@ -39,23 +39,27 @@
     <mat-form-field [style.width.px]=300 appearance="outline">
       <mat-label>Kategori</mat-label>
       <mat-select
-        name="category"
-        disableOptionCentering
-        [(ngModel)]="dishFormData.category"
-        required
-        [disabled]="!categoryService.categories.length"
+      name="category"
+      disableOptionCentering
+      [(ngModel)]="dishFormData.category"
+      required
+      [disabled]="!categoryService.categories.length"
       >
-        <div class="w-100 p-2 d-flex flex-column">
-          <mat-option class="border border-2 rounded w-100 p-2 m-1" *ngFor="let category of categoryService.categories" [value]="category.key">
-            <img src="{{ category.img }}" alt="category" width="50" height="50" class="rounded-2">
-            <span class="mx-2 my-auto">{{ category.label }}</span>
-            <span class="float-end"></span>
-          </mat-option>
+      <div class="w-100 p-2 d-flex flex-column">
+        <mat-option class="border border-2 rounded w-100 p-2 m-1" *ngFor="let category of categoryService.categories" [value]="category.key">
+          <img src="{{ category.img }}" alt="category" width="50" height="50" class="rounded-2">
+          <span class="mx-2 my-auto">{{ category.label }}</span>
+          <span class="float-end"></span>
+        </mat-option>
         </div>
       </mat-select>
     </mat-form-field>
-    <div class="form-group">
-      <button mat-raised-button type="submit" [disabled]="!form.valid">Ekle</button>
-    </div>
+    <button
+    class="btn m-0 p-2 mb-3 btn-dark w-100 btn-block"
+    [style.disabled]="!form.valid"
+    type="submit"
+    >
+      Ekle
+    </button>
   </form>
 </div>
