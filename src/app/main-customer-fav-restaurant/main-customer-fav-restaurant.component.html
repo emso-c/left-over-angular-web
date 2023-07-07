@@ -1,5 +1,57 @@
-<div *ngFor='let restaurant of restaurants'>
+<!-- <div *ngFor='let restaurant of restaurants'>
   <img (click)="handleRestaurantClick(restaurant.details?._id)" src="{{restaurant.details?.img}}" alt="restaurant image" width="200px" height="200px">
   <h3>{{restaurant.details?.title}}</h3>
   <p>{{restaurant.details?.description}}</p>
+</div>
+ -->
+
+
+<app-loading *ngIf="!userService.loaded"></app-loading>
+<app-loading *ngIf="!userService.loaded"></app-loading>
+
+<div style="background-color: rgba(240, 240, 240, 1); height: 100%">
+  <div class="container p-4">
+    <div class="row d-flex">
+      <ng-container *ngFor="let restaurant of restaurants">
+        <div class="restaurant-card shadow">
+          <div class="w-100 d-flex flex-column" (click)="handleRestaurantClick(restaurant.details._id)">
+            <div class="row-6 ">
+              <div class="col restaurant-img bg-secondary" style="background-image: url({{restaurant.details.img}});">
+                <mat-icon
+                  mat-list-icon
+                  (click)="handleFavorite($event, restaurant.details._id)"
+                  [style.color]="isFavorite(restaurant.details._id) ? 'rgb(255, 0, 17)' : 'rgb(0, 0, 0)'">
+                  favorite{{isFavorite(restaurant.details._id) ? '' : '_outline'}}
+                </mat-icon>
+              </div>
+            </div>
+          
+            <div class="row-1 ">
+              <div class="col d-flex flex-column p-3 pb-0">
+                <p class="fs-6 fw-bolder">{{restaurant.details.title}}</p>
+              </div>
+            </div>
+          
+            <div class="row-3 ">
+              <div class="col d-flex flex-column p-3 pt-0">
+                <p class="text-black-50 fw-light">{{restaurant.details.description}}</p>
+              </div>
+            </div>
+          
+            <div class="row-1 mt-auto">
+              <div class="col d-flex flex-column p-3">
+                <p *ngIf="restaurant.details.comments.length">
+                  <img src="assets/images/comment.png" width="20" height="20" class="me-2">
+                  {{restaurant.details.comments.length}} yorum
+                </p>
+                <p *ngIf="!restaurant.details.comments.length">
+                  <img src="assets/images/comment.png" width="20" height="20" class="me-1">
+                  Yorum yok
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-container>
+  </div>
 </div>

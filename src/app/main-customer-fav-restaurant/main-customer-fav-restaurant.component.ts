@@ -32,4 +32,29 @@ export class MainCustomerFavRestaurantComponent {
   handleRestaurantClick(restaurantId: string) {
     this.router.navigate(['main/restaurants', restaurantId]);
   }
+
+  isFavorite(restaurantCompositeId: string): boolean {
+    return this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)
+  }
+  handleFavorite(event: any, restaurantCompositeId: string) {
+    event.stopPropagation();
+    if (this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)){
+      this.userService.removeFavoriteRestaurant(restaurantCompositeId)
+        .then(() => {
+          this.restaurants.splice(this.restaurants.findIndex(restaurant => restaurant.details?._id === restaurantCompositeId), 1);
+          // alert('Restoran favorilerinizden başarıyla çıkarıldı!')
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    } else {
+      this.userService.addFavoriteRestaurant(restaurantCompositeId)
+        .then(() => {
+          // alert('Restoran favorilerinize başarıyla eklendi!')
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+  }
 }
