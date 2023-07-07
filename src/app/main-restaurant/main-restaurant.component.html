@@ -1,4 +1,51 @@
-<ul class="nav flex-column">
+
+
+<app-loading *ngIf="!userService.loaded"></app-loading>
+ <div class="container p-5 m-5">
+  <div class="row text-center">
+    <div class="row">
+      <div class=" d-flex justify-content-center align-items-center">
+        <img src={{userService.currentUser?.details?.img}} class="rounded-circle" width="300" height="300">
+      </div>
+    </div>
+    <div class="row">
+      <div class="profile-head">
+        <h2 class="fs-4"><b>
+          {{userService.currentUser?.details?.title}}
+        </b></h2>
+        <h3 class="fs-5">
+          {{userService.currentUser?.email}}
+        </h3>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row m-auto" style="max-width: 400px">
+    <a href="/restaurant-edit" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/edit-restaurant.png" width="30" height="30" class="me-2">
+      Restoran Bilgilerini Düzenle
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+    </a>
+    <a href="/restaurant-menu" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/show-menu.png" width="30" height="30" class="me-2">
+      Menüyü Göster
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+    </a>
+    <a rhref="/restaurant-comments" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/comments.png" width="30" height="30" class="me-2">
+      Yorumlarımı Göster
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+      
+    </a>
+    <a href="/restaurant-add-dish" class="btn btn-outline-dark m-2 p-2 btn-block text-start  position-relative">
+      <img src="assets/images/add-food.png" width="30" height="30" class="me-2">
+      Yemek Ekle
+      <span style="position: absolute; top: 25%; left: 95%;">></span>
+    </a>
+  </div>
+</div>
+
+<!-- <ul class="nav flex-column">
   <li class="nav-item">
     <a class="nav-link" href="/restaurant-edit">Restoran Bilgilerini Düzenle</a>
   </li>
@@ -11,4 +58,4 @@
   <li class="nav-item">
     <a class="nav-link" href="/restaurant-add-dish">Yemek Ekle</a>
   </li>
-</ul>
+</ul> -->
