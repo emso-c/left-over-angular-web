@@ -70,10 +70,10 @@ export class MainCustomerSearchComponent {
     if(!this.minPrice && !this.maxPrice) {
       return true;
     }
-    else if(this.maxPrice) {
+    else if(this.maxPrice && !this.minPrice) {
       return price <= this.maxPrice;
     }
-    else if(this.minPrice) {
+    else if(this.minPrice && !this.maxPrice) {
       return price >= this.minPrice;
     }
     return price >= this.minPrice! && price <= this.maxPrice!;
