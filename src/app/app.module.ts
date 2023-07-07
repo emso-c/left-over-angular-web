@@ -71,6 +71,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { HotToastModule } from '@ngneat/hot-toast';
 
 import player from 'lottie-web';
+import { DeliveryComponent } from './delivery/delivery.component';
 export function playerFactory() {
   return player;
 }
@@ -108,6 +109,7 @@ export function playerFactory() {
     MainCustomerRestaurantDetailsComponent,
     MainCustomerNotificationsComponent,
     LoadingComponent,
+    DeliveryComponent,
   ],
   imports: [
     BrowserModule,
