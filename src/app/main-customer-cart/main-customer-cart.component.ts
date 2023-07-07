@@ -64,7 +64,7 @@ export class MainCustomerCartComponent {
 
   async confirmShoppingCart(): Promise<boolean>{
     if (this.cartService.hasMixedRestaurants){
-      alert('Aynı restorandan olmayan ürünler sepetinizde bulunmaktadır. Lütfen sepetinizi kontrol ediniz.')
+      alert('Sepetinizde aynı restorandan olmayan ürünler bulunmaktadır. Lütfen sepetinizi kontrol ediniz.')
       return false;
     }
 
