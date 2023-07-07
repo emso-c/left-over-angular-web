@@ -58,46 +58,41 @@ export class RestaurantEditComponent {
   }
   submitRestaurantEditForm() {
     this.isSubmitting = true;
-    const id = this.userService.currentUser!.uid;
-    const email = this.userService.currentUser!.email;
-    const title = this.restaurantFormData.title;
-    const description = this.restaurantFormData.description;
-    const foods = this.userService.currentUser!.details!.foods;
-    const comments = this.userService.currentUser!.details!.comments;
-
-    if (!this.imgFile) {
-      alert('Please select an image');
-      this.isSubmitting = false;
-      return;
+    const data: RestaurantDetails = {
+      _id: this.userService.currentUser!.details!._id,
+      title: this.restaurantFormData.title,
+      description: this.restaurantFormData.description,
+      img: this.imgFile ? null : this.userService.currentUser!.details!.img,
+      type: 'restaurant',
+      createdAt: this.userService.currentUser!.details!.createdAt,
+      foods: this.userService.currentUser!.details!.foods,
+      comments: this.userService.currentUser!.details!.comments
     }
 
-    this.userService.uploadImage(id!, this.imgFile!)
-      .then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((downloadURL) => {
-            const data: RestaurantDetails = {
-              _id: email+'+'+id,
-              title: title,
-              description: description,
-              img: downloadURL,
-              type: 'restaurant',
-              createdAt: this.utilsService.getCurrentDate(),
-              foods: foods,
-              comments: comments
-            }
-            this.userService.updateCurrentUserDetails(data)!
-              .then(() => {
-                  this.isSubmitting = false;
-                  this.router.navigate(['/main']);
-                }
-              );
+    const updateCurrentUserDetails = () => {
+      this.userService.updateCurrentUserDetails(data)!
+        .then(() => {
+          this.isSubmitting = false;
+          setTimeout(() => {
+            alert('Restoran bilgileriniz güncellendi.');
+            window.location.reload();
+          }, 100);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        this.resetRestaurantForm();
-      });
+    };
+
+    if (this.imgFile) {
+      this.userService.uploadImage(this.userService.currentUser!.uid, this.imgFile!)
+        .then((snapshot) => getDownloadURL(snapshot.ref))
+        .then((downloadURL) => {
+          data.img = downloadURL as string;
+          updateCurrentUserDetails();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      updateCurrentUserDetails();
+    }
   }
   resetRestaurantForm() {
     // Reset the form data
