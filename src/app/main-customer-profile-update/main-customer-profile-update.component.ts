@@ -27,6 +27,7 @@ export class MainCustomerProfileUpdateComponent {
     this.imgFile = file;
   }
   submitCustomerForm() {
+    this.isSubmitting = true;
     const data: CustomerDetails = {
       _id: this.userService.currentUser!.details!._id,
       email: this.userService.currentUser!.email,
@@ -46,8 +47,10 @@ export class MainCustomerProfileUpdateComponent {
       this.userService.updateCurrentUserDetails(data)!
         .then(() => {
           this.isSubmitting = false;
-          alert('Profil bilgileriniz güncellendi.');
-          window.location.reload();
+          setTimeout(() => {
+            alert('Profil bilgileriniz güncellendi.');
+            window.location.reload();
+          }, 100);
         });
     };
   
