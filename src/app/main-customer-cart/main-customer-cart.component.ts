@@ -27,7 +27,7 @@ export class MainCustomerCartComponent {
 
   ngOnInit() {
     this.paymentService.creditCards$.subscribe((creditCards) => {
-      this.creditCards = creditCards;
+      this.creditCards = creditCards.filter((creditCard) => creditCard.createdBy == this.userService.currentUser?.details?._id);
     });
   }
 

@@ -3,30 +3,69 @@
     
     <!-- STEP 1: SEPETİ DÜZENLE  -->
     <mat-step label="Sepetini Düzenle">
-      <div *ngFor="let item of cartService.cart.items">
-        {{item.food.title}}
-        <button class="btn btn-primary" (click)="cartService.increaseQuantity(item.food)">
-          <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
-        </button>
-        <span>{{cartService.getQuantity(item.food)}}</span>
-        <button class="btn btn-danger" (click)="cartService.decreaseQuantity(item.food)">
-          <mat-icon mat-list-icon>remove_shopping_cart</mat-icon>
-        </button>
+      <div class="container">
+        <div *ngFor="let item of cartService.cart.items" class="row m-3">
+          <div class="col-sm-1">
+            <img src={{item.food.img}} alt="Image" class="rounded bg-danger" width="70" height="70">
+          </div>
+          <div class="col-sm-8">
+            <div class="row">
+              <p class="fw-bolder fs-6">{{item.food.title}}</p>
+            </div>
+            <div class="row">
+              <div class="cart-controls col">
+                <img src="assets/images/plus.png" width="30" height="30" class="me-1" (click)="cartService.increaseQuantity(item.food)">
+                <span class="fs-6 mx-3">{{cartService.getQuantity(item.food)}}</span>
+                <img src="assets/images/minus.png" width="30" height="30" class="me-1" (click)="cartService.decreaseQuantity(item.food)">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 d-flex align-items-end justify-content-end">
+            <p class="fs-6 fw-bold" style="color:orangered">
+              x{{cartService.getQuantity(item.food)}}
+            </p>
+          </div>
+        </div>
       </div>
-      
-      <div class="">
-        <span class="d-block">İndirimsiz Ücret <span class="text-decoration-line-through">{{cartService.totalMainPrice}}</span></span>
-        <span class="d-block">İndirimli Ücret <span class="">{{cartService.totalSalesPrice}}</span></span>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex flex-column h-100">
+              <div class="row flex-fill fw-bold div-with-line">
+                <div class="col line-through">
+                  <p class="fs-6">İndirimsiz Ücret</p>
+                </div>
+                <div class="col line-through">
+                  <p class="text-end text-danger fs-5">{{cartService.totalSalesPrice}}₺</p>
+                </div>
+              </div>
+              <div class="row flex-fill fw-bold">
+                <div class="col">
+                  <p class="fs-6">İndirimli Ücret</p>
+                </div>
+                <div class="col">
+                  <p class="text-end fs-5" style="color: rgb(255, 136, 0)">{{cartService.totalMainPrice}}₺</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-     
+      <hr>
       <button mat-button matStepperNext>Sonraki</button>
     </mat-step> 
 
     <!-- STEP 2: ÖDEME YÖNTEMİNİ SEÇ -->
     <mat-step label="Ödeme Yöntemi" [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <div *ngFor="let creditCard of creditCards">
-          <div *ngIf="creditCard.createdBy == userService.currentUser?.details?._id" class="creditCard">
+        <div *ngIf="creditCards.length == 0">
+          <span class="text-center fs-5">
+            Kayıtlı ödeme yöntemi bulunmamaktadır. <a href="main/profile/payment-methods/add">Kredi kartı eklemek için tıklayınız.</a>
+          </span>
+        </div>
+        <ng-container *ngFor="let creditCard of creditCards">
+          <div class="creditCard d-flex justify-content-center align-items-center">
             <button (click)="handleCreditCardClick(creditCard)" class="border border-2 rounded-2 border-{{selectedCreditCard==creditCard?'warning':''}}">
               <div class="row">
                 <div class="col-4">
@@ -41,7 +80,7 @@
               </div>
             </button>
           </div>
-        </div>
+        </ng-container>
         <div>
           <button mat-button matStepperPrevious>Geri Dön</button>
           <button mat-button matStepperNext id="second-form-button" (click)="handleSecondForm()">Sonraki</button>
