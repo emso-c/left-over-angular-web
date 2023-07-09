@@ -4,16 +4,44 @@
 <div class="container">
   <div class="retaurant-details">
     <h2>Sipariş Edilen Restoran</h2>
-    <div *ngIf="restaurant">
-      <img (click)="handleRestaurantClick(restaurant.details._id)" src={{restaurant.details.img}} width="100" height="100">
-      <h3>{{restaurant.details.title}}</h3>
-      <h4>{{restaurant.details.description}}</h4>
-      <h5>{{restaurant.details.comments.length}} comments</h5>
-      <a (click)="handleFavoriteRestaurant(restaurant.details._id)">
-        <mat-icon mat-list-icon>
-          favorite{{userService.currentUser?.details.favoriteRestaurants.includes(restaurant.details._id) ? '':'_outline'}}
-        </mat-icon>
-      </a>
+    <div *ngIf="restaurant" class="container" style="max-width: 700px">
+      <div class="w-100 d-flex flex-column" (click)="handleRestaurantClick(restaurant.details._id)">
+        <div class="row-6">
+          <div class="col restaurant-img bg-secondary" style="background-image: url({{restaurant.details.img}});">
+            <mat-icon
+              mat-list-icon
+              (click)="handleFavoriteRestaurant($event, restaurant.details._id)"
+              [style.color]="isFavorite(restaurant.details._id) ? 'rgb(255, 0, 17)' : 'rgb(0, 0, 0)'">
+              favorite{{isFavorite(restaurant.details._id) ? '' : '_outline'}}
+            </mat-icon>
+          </div>
+        </div>
+      
+        <div class="row-1 ">
+          <div class="col d-flex flex-column p-3 pb-0">
+            <p class="fs-6 fw-bolder">{{restaurant.details.title}}</p>
+          </div>
+        </div>
+      
+        <div class="row-3 ">
+          <div class="col d-flex flex-column p-3 pt-0">
+            <p class="text-black-50 fw-light">{{restaurant.details.description}}</p>
+          </div>
+        </div>
+      
+        <div class="row-1 mt-auto">
+          <div class="col d-flex flex-column p-3">
+            <p *ngIf="restaurant.details.comments.length">
+              <img src="assets/images/comment.png" width="20" height="20" class="me-2">
+              {{restaurant.details.comments.length}} yorum
+            </p>
+            <p *ngIf="!restaurant.details.comments.length">
+              <img src="assets/images/comment.png" width="20" height="20" class="me-1">
+              Yorum yok
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <hr />

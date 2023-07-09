@@ -38,6 +38,10 @@ export class MainCustomerOrderDetailsComponent {
   // loaders
   isSumbittingComment: boolean = false;
 
+  isFavorite(restaurantCompositeId: string): boolean {
+    return this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)
+  }
+
   ngOnInit(): void {
     let counter = 0
     const interval = setInterval(() => {
@@ -68,7 +72,8 @@ export class MainCustomerOrderDetailsComponent {
     this.router.navigate([`main/restaurants/${id}`]);
   }
 
-  handleFavoriteRestaurant(restaurantCompositeId: string) {
+  handleFavoriteRestaurant(event: any, restaurantCompositeId: string) {
+    event.stopPropagation();
     if (this.userService.currentUser?.details.favoriteRestaurants.includes(restaurantCompositeId)){
       this.userService.removeFavoriteRestaurant(restaurantCompositeId)
         .then(() => {
