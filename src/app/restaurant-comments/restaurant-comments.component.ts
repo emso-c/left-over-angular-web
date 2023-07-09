@@ -42,9 +42,6 @@ export class RestaurantCommentsComponent {
         if (comment) {
           comment.createdAt = this.utilsService.formatDate(comment.createdAt); 
           this.comments.push(comment);
-          this.comments.push(comment);
-          this.comments.push(comment);
-          this.comments.push(comment); // populate for test purposes
         }  
       });
 
