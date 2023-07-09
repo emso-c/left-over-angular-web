@@ -67,7 +67,7 @@
               <p>Yemek Tutarı</p>
             </div>
             <div class="col">
-              <p class="text-end">{{order ? order.totalAmount-utilsService.consts.TAX : ''}}</p>
+              <p class="text-end">{{order ? order.totalAmount-utilsService.consts.TAX : ''}}₺</p>
             </div>
           </div>
           <div class="row flex-fill fw-bold">
@@ -75,7 +75,7 @@
               <p>Vergi ve Kesintiler</p>
             </div>
             <div class="col">
-              <p class="text-end">{{utilsService.consts.TAX}} TL</p>
+              <p class="text-end">{{utilsService.consts.TAX}}₺</p>
             </div>
           </div>
           <div class="row flex-fill text-danger fs-6 fw-bolder">
@@ -83,7 +83,7 @@
                 <p><b>Toplam</b></p>
               </div>
               <div class="col">
-                <p class="text-end"><b>{{order?.totalAmount}}TL</b></p>
+                <p class="text-end"><b>{{order?.totalAmount}}₺</b></p>
               </div>
           </div>
         </div>
